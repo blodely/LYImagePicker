@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  LYImagePicker
+//  LYIMAGEPICKER
 //
-//  Created by blodely on 06/14/2017.
-//  Copyright (c) 2017 blodely. All rights reserved.
+//  CREATED BY LUO YU ON 2017-06-14.
+//  COPYRIGHT © 2017 LUO YU. ALL RIGHTS RESERVED.
 //
 
 import UIKit

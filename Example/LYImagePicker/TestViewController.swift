@@ -1,9 +1,9 @@
 //
 //  TestViewController.swift
-//  LYImagePicker
+//  LYIMAGEPICKER
 //
-//  Created by 駱彧 on 14/6/2017.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  CREATED BY LUO YU ON 2017-06-14.
+//  COPYRIGHT © 2017 LUO YU. ALL RIGHTS RESERVED.
 //
 
 import UIKit
