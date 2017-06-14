@@ -10,6 +10,25 @@ import UIKit
 
 class TestViewController: UIViewController {
 	
+	// MARK: - UI
+	
+	@IBOutlet weak var ivRet: UIImageView!
+	@IBOutlet weak var lblRet: UILabel!
+	@IBOutlet weak var btnAlbum: UIButton!
+	@IBOutlet weak var btnCamera: UIButton!
+	
+	// MARK: - ACTION
+	
+	@IBAction func albumButtonPressed(_ sender: Any) {
+	}
+	
+	@IBAction func cameraButtonPressed(_ sender: Any) {
+	}
+	
+	// MARK: - INIT
+	
+	// MARK: VIEW LIFE CYCLE
+	
 	override func loadView() {
 		super.loadView()
 		
@@ -19,17 +38,19 @@ class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // DO ANY ADDITIONAL SETUP AFTER LOADING THE VIEW.
     }
+	
+	// MARK: MEMORY WARNINGS
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // DISPOSE OF ANY RESOURCES THAT CAN BE RECREATED.
     }
     
 
     /*
-    // MARK: - Navigation
+    // MARK: - NAVIGATION
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
