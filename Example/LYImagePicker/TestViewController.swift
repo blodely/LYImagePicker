@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LYImagePicker
 
 class TestViewController: UIViewController {
 	
@@ -39,6 +40,8 @@ class TestViewController: UIViewController {
         super.viewDidLoad()
 
         // DO ANY ADDITIONAL SETUP AFTER LOADING THE VIEW.
+		
+		
     }
 	
 	// MARK: MEMORY WARNINGS
