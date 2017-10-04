@@ -26,6 +26,9 @@ class TestViewController: UIViewController {
 	@IBAction func cameraButtonPressed(_ sender: Any) {
 	}
 	
+	@IBAction func picTriggerButtonPressed(_ sender: Any) {
+	}
+	
 	// MARK: - INIT
 	
 	// MARK: VIEW LIFE CYCLE
