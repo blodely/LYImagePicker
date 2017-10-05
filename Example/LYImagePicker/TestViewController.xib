@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -110,11 +110,23 @@
                         <action selector="cameraButtonPressed:" destination="-1" eventType="touchUpInside" id="aRp-AJ-wMS"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ri1-60-LUZ">
+                    <rect key="frame" x="16" y="418.5" width="343" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Sr8-Gi-7Pb"/>
+                    </constraints>
+                    <state key="normal" title="or just give me a picture"/>
+                    <connections>
+                        <action selector="picTriggerButtonPressed:" destination="-1" eventType="touchUpInside" id="ldk-AN-9IJ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="b63-A6-dZs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="2mK-Ud-ZQk"/>
+                <constraint firstItem="ri1-60-LUZ" firstAttribute="top" secondItem="LnI-Vo-kFB" secondAttribute="bottom" constant="8" id="6ut-4m-2YJ"/>
                 <constraint firstItem="LnI-Vo-kFB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="8ym-ft-wso"/>
+                <constraint firstAttribute="trailing" secondItem="ri1-60-LUZ" secondAttribute="trailing" constant="16" id="BSr-pE-fxc"/>
                 <constraint firstItem="b63-A6-dZs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Fiz-tM-als"/>
                 <constraint firstAttribute="trailing" secondItem="uz7-6K-XKF" secondAttribute="trailing" constant="10" id="GOf-Lb-SmB"/>
                 <constraint firstItem="kIe-Sa-ZYz" firstAttribute="top" secondItem="uz7-6K-XKF" secondAttribute="bottom" constant="10" id="P1N-ao-JF9"/>
@@ -122,6 +134,7 @@
                 <constraint firstItem="uz7-6K-XKF" firstAttribute="top" secondItem="b63-A6-dZs" secondAttribute="bottom" constant="10" id="T8D-dS-Eog"/>
                 <constraint firstItem="kIe-Sa-ZYz" firstAttribute="leading" secondItem="LnI-Vo-kFB" secondAttribute="trailing" constant="10" id="ZLA-Bk-4MW"/>
                 <constraint firstAttribute="trailing" secondItem="kIe-Sa-ZYz" secondAttribute="trailing" constant="10" id="ZMH-5t-S77"/>
+                <constraint firstItem="ri1-60-LUZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="dy3-i0-PoH"/>
                 <constraint firstItem="kIe-Sa-ZYz" firstAttribute="width" secondItem="LnI-Vo-kFB" secondAttribute="width" id="hDn-sC-6eL"/>
                 <constraint firstAttribute="trailing" secondItem="b63-A6-dZs" secondAttribute="trailing" constant="10" id="hsr-Mb-SS6"/>
                 <constraint firstItem="LnI-Vo-kFB" firstAttribute="top" secondItem="uz7-6K-XKF" secondAttribute="bottom" constant="10" id="t7n-1d-maB"/>
