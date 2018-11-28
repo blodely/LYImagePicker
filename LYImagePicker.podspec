@@ -6,11 +6,11 @@
 
 Pod::Spec.new do |s|
 	s.name             = 'LYImagePicker'
-	s.version          = '0.1.0'
+	s.version          = '1.0.0'
 	s.summary          = 'LYImagePicker.'
 
 	s.description      = <<-DESC
-Image Picker with Swift 3.
+A Custom Image Picker.
 					   DESC
 
 	s.homepage         = 'https://github.com/blodely/LYImagePicker'
@@ -33,6 +33,6 @@ Image Picker with Swift 3.
 	# s.frameworks = 'UIKit', 'MapKit'
 	# s.dependency 'AFNetworking', '~> 2.3'
 
-	s.ios.frameworks = 'UIKit'
+	s.ios.frameworks = 'UIKit', 'Photo'
 
 end

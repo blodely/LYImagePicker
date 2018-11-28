@@ -1,16 +1,16 @@
 PODS:
-  - LYImagePicker (0.1.0)
+  - LYImagePicker (1.0.0)
 
 DEPENDENCIES:
   - LYImagePicker (from `../`)
 
 EXTERNAL SOURCES:
   LYImagePicker:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  LYImagePicker: f5c368c59d896009b252002762795cdf0e981954
+  LYImagePicker: 403a81b9862292c65641059c1320712accd8beae
 
-PODFILE CHECKSUM: 07819f5aef7b276d71a5eb3adb8a7c488036fad5
+PODFILE CHECKSUM: 247835410900969359d2e734359b88d30fa95e99
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3
