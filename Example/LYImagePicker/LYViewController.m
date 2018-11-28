@@ -45,6 +45,36 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// DO ANY ADDITIONAL SETUP AFTER LOADING THE VIEW, TYPICALLY FROM A NIB.
+	
+	[[LYImagePicker kit] authorizationStatus:^(PHAuthorizationStatus status) {
+		switch (status) {
+			case PHAuthorizationStatusNotDetermined: {
+				// REQUEST
+				[PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+					
+				}];
+			} break;
+			case PHAuthorizationStatusAuthorized: {
+				// ALLOW
+				[[LYImagePicker kit] fetchVideo:^(NSArray<PHAsset *> *result) {
+					NSLog(@"VIDEO\nCOUNT=%@\n%@", @(result.count), result.firstObject);
+				}];
+				[[LYImagePicker kit] fetchPicture:^(NSArray<PHAsset *> *result) {
+					NSLog(@"PICTURE\nCOUNT=%@\n%@", @(result.count), result.firstObject);
+				}];
+				
+			} break;
+			case PHAuthorizationStatusRestricted: {
+				
+			} break;
+			case PHAuthorizationStatusDenied: {
+				
+			} break;
+			default: {
+			} break;
+		}
+	}];
+
 }
 
 - (void)didReceiveMemoryWarning {

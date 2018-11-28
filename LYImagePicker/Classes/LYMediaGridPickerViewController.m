@@ -15,12 +15,16 @@
 #import <Masonry/Masonry.h>
 
 
-@interface LYMediaGridPickerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
+@interface LYMediaGridPickerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, LYMediaCandidateCellDelegate> {
 	
 	__weak UISegmentedControl *seg;
 	__weak UICollectionView *cvGrid;
 	__weak UICollectionView *cvCandidate;
 	
+	NSMutableArray<PHAsset *> *dsVideo;
+	NSMutableArray<PHAsset *> *dsPic;
+	
+	NSMutableArray *dsSelIdx;
 	LYMediaPickerDone blockDonePick;
 }
 @end
@@ -46,6 +50,10 @@
 
 - (void)segmentedChanged:(id)sender {
 	
+	[dsSelIdx removeAllObjects];
+	
+	[cvGrid reloadData];
+	[cvCandidate reloadData];
 }
 
 // MARK: - INIT
@@ -65,6 +73,9 @@
 	[super initial];
 	
 	_gridNumber = 5;
+	dsVideo = [NSMutableArray arrayWithCapacity:1];
+	dsPic = [NSMutableArray arrayWithCapacity:1];
+	dsSelIdx = [NSMutableArray arrayWithCapacity:1];
 }
 
 // MARK: VIEW LIFE CYCLE
@@ -110,7 +121,8 @@
 									  NSForegroundColorAttributeName:[UIColor whiteColor],
 									  }
 						   forState:UIControlStateSelected];
-		[seg addTarget:self action:@selector(segmentedChanged:) forControlEvents:UIControlEventTouchUpInside];
+		
+		[seg addTarget:self action:@selector(segmentedChanged:) forControlEvents:UIControlEventValueChanged];
 	}
 	
 	{
@@ -143,6 +155,9 @@
 		// MARK: COLLECTION VIEW : CANDIDATE
 		UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
 		layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+		layout.minimumLineSpacing = 10;
+		layout.minimumInteritemSpacing = 0;
+		layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
 		
 		UICollectionView *collectionview = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
 		
@@ -162,15 +177,32 @@
 		cvCandidate.backgroundColor = [UIColor clearColor];
 		cvCandidate.delegate = self;
 		cvCandidate.dataSource = self;
+		
+		[cvCandidate registerClass:[LYMediaCandidateCell class] forCellWithReuseIdentifier:LYMediaCandidateCellIdentifier];
 	}
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+	seg.selectedSegmentIndex = 0;
+	
 	for (id one in self.view.subviews) {
 		[(UIView *)one border1Px];
 	}
+	
+	[[LYImagePicker kit] fetchVideo:^(NSArray<PHAsset *> *result) {
+		
+		[self->dsVideo removeAllObjects];
+		[self->dsVideo addObjectsFromArray:result];
+//		[self->cvGrid reloadData];
+		
+	}];
+	
+	[[LYImagePicker kit] fetchPicture:^(NSArray<PHAsset *> *result) {
+		[self->dsPic removeAllObjects];
+		[self->dsPic addObjectsFromArray:result];
+	}];
 }
 
 // MARK: - METHOD
@@ -197,6 +229,23 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)idp {
 	
+	if (collectionView == cvGrid) {
+		
+		// GONNA SELECT
+		[dsSelIdx addObject:@(idp.item)];
+		
+		[cvCandidate reloadData];
+	}
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)idp {
+	
+	if (collectionView == cvGrid) {
+		// GONNA DESELECT
+		[dsSelIdx removeObject:@(idp.item)];
+		
+		[cvCandidate reloadData];
+	}
 }
 
 // MARK: UICollectionViewDataSource
@@ -206,12 +255,12 @@
 	NSInteger items = 0;
 	
 	if (collectionView == cvGrid) {
-		items = 10;
+		items = seg.selectedSegmentIndex == 0 ? [dsVideo count] : [dsPic count];
 		return items;
 	}
 	
 	if (collectionView == cvCandidate) {
-		items = 0;
+		items = [dsSelIdx count];
 		return items;
 	}
 	
@@ -221,14 +270,40 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)idp {
 	
 	if (collectionView == cvGrid) {
+		
 		LYMediaGridCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYMediaGridCellIdentifier forIndexPath:idp];
+		
+		if (seg.selectedSegmentIndex == 0) {
+			dsVideo[idp.item];
+			
+			cell.ivPic.image = nil;
+			
+		} else if (seg.selectedSegmentIndex == 1) {
+			dsPic[idp.item];
+			
+			[[LYImagePicker kit] requestPicture:dsPic[idp.item] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
+				cell.ivPic.image = image;
+			}];
+		}
+		
 		
 		return cell;
 	}
 	
 	if (collectionView == cvCandidate) {
+		LYMediaCandidateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYMediaCandidateCellIdentifier forIndexPath:idp];
+		cell.delegate = self;
 		
-		return nil;
+		if (seg.selectedSegmentIndex == 0) {
+			cell.ivPic.image = nil;
+		} else if (seg.selectedSegmentIndex == 1) {
+			
+			[[LYImagePicker kit] requestPicture:dsPic[[dsSelIdx[idp.item] integerValue]] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
+				cell.ivPic.image = image;
+			}];
+		}
+		
+		return cell;
 	}
 	
 	return nil;
@@ -238,9 +313,25 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)idp {
 	CGSize size = CGSizeZero;
-	size.width = floorf((WIDTH - ((_gridNumber - 1) * 2)) / _gridNumber);
-	size.height = size.width;
+	
+	if (collectionView == cvGrid) {
+		size.width = floorf((WIDTH - ((_gridNumber - 1) * 2)) / _gridNumber);
+		size.height = size.width;
+		return size;
+	}
+	
+	if (collectionView == cvCandidate) {
+		size.width = floorf((WIDTH - 50) / 4);
+		size.height = size.width;
+	}
+	
 	return size;
+}
+
+// MARK: LYMediaCandidateCellDelegate
+
+- (void)deleteActionInMediaCandidateCell:(LYMediaCandidateCell *)cell {
+	
 }
 
 @end
