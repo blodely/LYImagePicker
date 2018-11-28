@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <LYImagePicker/LYMediaGridPickerViewController.h>
+#import <LYImagePicker/LYMediaGridCell.h>
 
+
+typedef void(^LYMediaPickerDone)(NSArray *results);
 
 @interface LYImagePicker : NSObject
 

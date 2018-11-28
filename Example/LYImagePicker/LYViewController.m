@@ -7,6 +7,10 @@
 //
 
 #import "LYViewController.h"
+#import <LYImagePicker/LYImagePicker.h>
+#import <BlocksKit/BlocksKit+UIKit.h>
+#import <Masonry/Masonry.h>
+
 
 @interface LYViewController ()
 
@@ -18,6 +22,24 @@
 	[super loadView];
 	
 	self.view.backgroundColor = [UIColor whiteColor];
+	self.navigationItem.title = @"Image Picker Test App";
+	
+	{
+		UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+		[button setTitle:@"Grid Picker" forState:UIControlStateNormal];
+		[self.view addSubview:button];
+		[button bk_addEventHandler:^(id sender) {
+			[self presentViewController:[LYMediaGridPickerViewController navWithDonePickAction:^(NSArray *result) {
+				NSLog(@"RESULT %@", result);
+			}] animated:YES completion:nil];
+		} forControlEvents:UIControlEventTouchUpInside];
+		[button mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(self.view).offset(100);
+			make.left.equalTo(self.view).offset(15);
+			make.right.equalTo(self.view).offset(-15);
+			make.height.mas_equalTo(44);
+		}];
+	}
 }
 
 - (void)viewDidLoad {

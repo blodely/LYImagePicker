@@ -1,16 +1,72 @@
 PODS:
-  - LYImagePicker (1.0.0)
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - FCFileManager (1.0.20)
+  - LYCategory (1.2.37)
+  - LYCore (1.0.33):
+    - AFNetworking (~> 3.2.1)
+    - FCFileManager (~> 1.0.20)
+    - LYCategory
+    - Masonry (~> 1.1.0)
+  - LYImagePicker (1.0.0):
+    - LYCategory
+    - LYCore
+  - Masonry (1.1.0)
 
 DEPENDENCIES:
+  - BlocksKit
   - LYImagePicker (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - BlocksKit
+    - FCFileManager
+    - LYCategory
+    - LYCore
+    - Masonry
 
 EXTERNAL SOURCES:
   LYImagePicker:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LYImagePicker: 403a81b9862292c65641059c1320712accd8beae
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  FCFileManager: e0f73316e6aa2eb04d2ff4caa75fe7df1ae44270
+  LYCategory: 0c3b48db41f99ee4fafc7debe374b8d22beaf207
+  LYCore: c0eaa8b8e2a40c4905d6b41873428ddc36554824
+  LYImagePicker: 17593caf1d3ee1502fb97ea304f68468376661f9
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: 247835410900969359d2e734359b88d30fa95e99
+PODFILE CHECKSUM: e41e55e51697744b476fb82bad6a85316ce47dff
 
 COCOAPODS: 1.5.3
