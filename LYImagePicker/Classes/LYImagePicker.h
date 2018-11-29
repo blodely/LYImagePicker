@@ -47,4 +47,6 @@ typedef void(^LYMediaPickerDone)(NSArray *results);
 
 - (void)requestVideo:(PHAsset *)asset complete:(void (^)(NSString *videopath))action;
 
+- (void)requestLatestVideoCoverComplete:(void (^)(UIImage *image))complete;
+
 @end
