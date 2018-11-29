@@ -12,7 +12,11 @@
 #import <Masonry/Masonry.h>
 
 
-@interface LYViewController ()
+@interface LYViewController () {
+	
+	__weak UIButton *btnGridPick;
+	__weak UIImageView *ivLatestVideo;
+}
 
 @end
 
@@ -24,10 +28,14 @@
 	self.view.backgroundColor = [UIColor whiteColor];
 	self.navigationItem.title = @"Image Picker Test App";
 	
+	CGFloat padding = 15;
+	
 	{
 		UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
 		[button setTitle:@"Grid Picker" forState:UIControlStateNormal];
 		[self.view addSubview:button];
+		btnGridPick = button;
+		
 		[button bk_addEventHandler:^(id sender) {
 			[self presentViewController:[LYMediaGridPickerViewController navWithDonePickAction:^(NSArray *result) {
 				NSLog(@"RESULT %@", result);
@@ -35,9 +43,21 @@
 		} forControlEvents:UIControlEventTouchUpInside];
 		[button mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.equalTo(self.view).offset(100);
-			make.left.equalTo(self.view).offset(15);
-			make.right.equalTo(self.view).offset(-15);
+			make.left.equalTo(self.view).offset(padding);
+			make.right.equalTo(self.view).offset(-padding);
 			make.height.mas_equalTo(44);
+		}];
+	}
+	
+	{
+		UIImageView *imageview = [[UIImageView alloc] init];
+		[self.view addSubview:imageview];
+		ivLatestVideo = imageview;
+		
+		[imageview mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(self->btnGridPick.mas_bottom).offset(padding);
+			make.left.equalTo(self.view).offset(padding);
+			make.width.height.mas_equalTo(80);
 		}];
 	}
 }
@@ -74,7 +94,10 @@
 			} break;
 		}
 	}];
-
+	
+	[[LYImagePicker kit] requestLatestVideoCoverComplete:^(UIImage *image) {
+		self->ivLatestVideo.image = image;
+	}];
 }
 
 - (void)didReceiveMemoryWarning {
