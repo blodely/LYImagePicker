@@ -132,13 +132,14 @@
 	
 }
 
-- (void)requestVideoCover:(PHAsset *)asset targetSize:(CGSize)size complete:(void (^)(UIImage *))complete {
-	
+- (void)requestVideoMeta:(PHAsset *)asset targetSize:(CGSize)size complete:(void (^)(UIImage *, NSString *))complete {
 	[[PHImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
 		
 		if (complete != nil) {
 			dispatch_async(dispatch_get_main_queue(), ^{
-				complete(result);
+				complete(result, [NSString stringWithFormat:@"%@.%@",
+								  @(floor(asset.duration / 60)),
+								  @((NSInteger)(asset.duration) % 60)]);
 			});
 		}
 	}];

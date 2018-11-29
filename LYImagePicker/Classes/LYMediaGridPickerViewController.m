@@ -285,12 +285,14 @@
 		}
 		
 		if (seg.selectedSegmentIndex == 0) {
-			[[LYImagePicker kit] requestVideoCover:dsVideo[idp.item] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
+			[[LYImagePicker kit] requestVideoMeta:dsVideo[idp.item] targetSize:(CGSize){100, 100} complete:^(UIImage *image, NSString *duration) {
 				cell.ivPic.image = image;
+				cell.lblDuration.text = duration;
 			}];
 		} else if (seg.selectedSegmentIndex == 1) {
 			[[LYImagePicker kit] requestPicture:dsPic[idp.item] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
 				cell.ivPic.image = image;
+				cell.lblDuration.text = @"";
 			}];
 		}
 		
@@ -302,12 +304,14 @@
 		cell.delegate = self;
 		
 		if (seg.selectedSegmentIndex == 0) {
-			[[LYImagePicker kit] requestVideoCover:dsVideo[[dsSelIdx[idp.item] integerValue]] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
+			[[LYImagePicker kit] requestVideoMeta:dsVideo[[dsSelIdx[idp.item] integerValue]] targetSize:(CGSize){100, 100} complete:^(UIImage *image, NSString *duration) {
 				cell.ivPic.image = image;
+				cell.lblDuration.text = duration;
 			}];
 		} else if (seg.selectedSegmentIndex == 1) {
 			[[LYImagePicker kit] requestPicture:dsPic[[dsSelIdx[idp.item] integerValue]] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
 				cell.ivPic.image = image;
+				cell.lblDuration.text = @"";
 			}];
 		}
 		

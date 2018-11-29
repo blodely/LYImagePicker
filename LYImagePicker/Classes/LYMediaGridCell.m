@@ -82,6 +82,8 @@ NSString *const LYMediaGridCellIdentifier = @"LYMediaGridCellIdentifier";
 		_lblDuration.font = [UIFont systemFontOfSize:13];
 		_lblDuration.textColor = [UIColor whiteColor];
 		_lblDuration.textAlignment = NSTextAlignmentRight;
+		_lblDuration.shadowOffset = (CGSize){1, 1};
+		_lblDuration.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
 	}
 }
 
