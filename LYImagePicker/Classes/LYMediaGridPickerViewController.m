@@ -234,6 +234,9 @@
 		// GONNA SELECT
 		[dsSelIdx addObject:@(idp.item)];
 		
+		__weak LYMediaGridCell *cell = (LYMediaGridCell *)[collectionView cellForItemAtIndexPath:idp];
+		cell.lblSelIdx.text = [@([dsSelIdx count]) string];
+		
 		[cvCandidate reloadData];
 	}
 }
@@ -243,6 +246,9 @@
 	if (collectionView == cvGrid) {
 		// GONNA DESELECT
 		[dsSelIdx removeObject:@(idp.item)];
+		
+		__weak LYMediaGridCell *cell = (LYMediaGridCell *)[collectionView cellForItemAtIndexPath:idp];
+		cell.lblSelIdx.text = @"";
 		
 		[cvCandidate reloadData];
 	}
@@ -270,8 +276,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)idp {
 	
 	if (collectionView == cvGrid) {
-		
 		LYMediaGridCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYMediaGridCellIdentifier forIndexPath:idp];
+		cell.tintColor = [UIColor coreThemeColor];
+//		if (cell.selected) {
+//			cell.lblSelIdx.text = [@([dsSelIdx indexOfObject:@(idp.item)]) string];
+//		} else {
+//			cell.lblSelIdx.text = @"";
+//		}
 		
 		if (seg.selectedSegmentIndex == 0) {
 			[[LYImagePicker kit] requestVideoCover:dsVideo[idp.item] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
@@ -283,7 +294,6 @@
 			}];
 		}
 		
-		
 		return cell;
 	}
 	
@@ -292,9 +302,10 @@
 		cell.delegate = self;
 		
 		if (seg.selectedSegmentIndex == 0) {
-			cell.ivPic.image = nil;
+			[[LYImagePicker kit] requestVideoCover:dsVideo[[dsSelIdx[idp.item] integerValue]] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
+				cell.ivPic.image = image;
+			}];
 		} else if (seg.selectedSegmentIndex == 1) {
-			
 			[[LYImagePicker kit] requestPicture:dsPic[[dsSelIdx[idp.item] integerValue]] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
 				cell.ivPic.image = image;
 			}];

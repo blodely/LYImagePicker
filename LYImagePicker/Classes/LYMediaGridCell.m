@@ -89,7 +89,7 @@ NSString *const LYMediaGridCellIdentifier = @"LYMediaGridCellIdentifier";
 	[super setSelected:selected];
 	
 	if (selected) {
-		cSelIdx.backgroundColor = [UIColor coreThemeColor];
+		cSelIdx.backgroundColor = self.tintColor;
 	} else {
 		cSelIdx.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
 	}
