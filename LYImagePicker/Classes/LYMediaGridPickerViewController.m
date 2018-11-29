@@ -274,13 +274,10 @@
 		LYMediaGridCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYMediaGridCellIdentifier forIndexPath:idp];
 		
 		if (seg.selectedSegmentIndex == 0) {
-			dsVideo[idp.item];
-			
-			cell.ivPic.image = nil;
-			
+			[[LYImagePicker kit] requestVideoCover:dsVideo[idp.item] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
+				cell.ivPic.image = image;
+			}];
 		} else if (seg.selectedSegmentIndex == 1) {
-			dsPic[idp.item];
-			
 			[[LYImagePicker kit] requestPicture:dsPic[idp.item] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
 				cell.ivPic.image = image;
 			}];

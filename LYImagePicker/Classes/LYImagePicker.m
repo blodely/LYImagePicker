@@ -132,6 +132,18 @@
 	
 }
 
+- (void)requestVideoCover:(PHAsset *)asset targetSize:(CGSize)size complete:(void (^)(UIImage *))complete {
+	
+	[[PHImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+		
+		if (complete != nil) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				complete(result);
+			});
+		}
+	}];
+}
+
 - (void)requestLatestVideoCoverComplete:(void (^)(UIImage *))complete {
 	
 	PHFetchOptions *options = [[PHFetchOptions alloc] init];

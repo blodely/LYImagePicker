@@ -71,10 +71,6 @@ NSString *const LYMediaCandidateCellIdentifier = @"LYMediaCandidateCellIdentifie
 		_lblDuration.textAlignment = NSTextAlignmentRight;
 		_lblDuration.textColor = [UIColor whiteColor];
 	}
-	
-	for (id one in self.subviews) {
-		[(UIView *)one border1Px];
-	}
 }
 
 @end
