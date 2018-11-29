@@ -235,7 +235,7 @@
 		[dsSelIdx addObject:@(idp.item)];
 		
 		__weak LYMediaGridCell *cell = (LYMediaGridCell *)[collectionView cellForItemAtIndexPath:idp];
-		cell.lblSelIdx.text = [@([dsSelIdx count]) string];
+		cell.lblSelIdx.text = [@([dsSelIdx indexOfObject:@(idp.item)] + 1) string];
 		
 		[cvCandidate reloadData];
 	}
@@ -278,11 +278,11 @@
 	if (collectionView == cvGrid) {
 		LYMediaGridCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LYMediaGridCellIdentifier forIndexPath:idp];
 		cell.tintColor = [UIColor coreThemeColor];
-//		if (cell.selected) {
-//			cell.lblSelIdx.text = [@([dsSelIdx indexOfObject:@(idp.item)]) string];
-//		} else {
-//			cell.lblSelIdx.text = @"";
-//		}
+		if (cell.selected) {
+			cell.lblSelIdx.text = [@([dsSelIdx indexOfObject:@(idp.item)] + 1) string];
+		} else {
+			cell.lblSelIdx.text = @"";
+		}
 		
 		if (seg.selectedSegmentIndex == 0) {
 			[[LYImagePicker kit] requestVideoCover:dsVideo[idp.item] targetSize:(CGSize){100, 100} complete:^(UIImage *image) {
@@ -340,6 +340,17 @@
 
 - (void)deleteActionInMediaCandidateCell:(LYMediaCandidateCell *)cell {
 	
+	[dsSelIdx removeObjectAtIndex:[cvCandidate indexPathForCell:cell].item];
+	
+	[UIView performWithoutAnimation:^{
+		[cvCandidate reloadData];
+		[cvGrid reloadData];
+	}];
+	
+	// RESELECT
+	for (NSNumber *one in dsSelIdx) {
+		[cvGrid selectItemAtIndexPath:[NSIndexPath indexPathForItem:one.integerValue inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionRight];
+	}
 }
 
 @end

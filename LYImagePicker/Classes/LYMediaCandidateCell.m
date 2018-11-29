@@ -55,6 +55,8 @@ NSString *const LYMediaCandidateCellIdentifier = @"LYMediaCandidateCellIdentifie
 			make.right.top.equalTo(self);
 			make.width.height.mas_equalTo(20);
 		}];
+		
+		[_btnDel addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	
 	{
