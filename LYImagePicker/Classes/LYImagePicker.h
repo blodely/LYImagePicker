@@ -47,8 +47,21 @@ typedef void(^LYMediaPickerDone)(NSArray *results);
 
 - (void)requestVideo:(PHAsset *)asset complete:(void (^)(NSString *videopath))action;
 
+/**
+ REQUEST ASSET OBJECT FOR SPECIFIED VIDEO,
+ WITH COMPLETION BLOCK GIVEN COVER IMAGE AND DURATION STRING.
+
+ @param asset VIDEO ASSET
+ @param size THUMBNAIL SIZE
+ @param complete COMPLETION BLOCK
+ */
 - (void)requestVideoMeta:(PHAsset *)asset targetSize:(CGSize)size complete:(void (^)(UIImage *image, NSString *duration))complete;
 
+/**
+ REQUEST THE LATEST VIDEO'S COVER IMAGE.
+
+ @param complete COMPLETION BLOCK
+ */
 - (void)requestLatestVideoCoverComplete:(void (^)(UIImage *image))complete;
 
 @end
