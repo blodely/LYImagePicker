@@ -21,9 +21,9 @@ A Custom Image Picker.
 
 	s.social_media_url = 'https://weibo.com/blodely'
 
-	s.ios.deployment_target = '8.0'
+	s.ios.deployment_target = '10.0'
 
-	s.source_files = 'LYImagePicker/Classes/**/*'
+	s.source_files = 'LYImagePicker/Classes/LYISelectorGrid/*', 'LYImagePicker/Classes/LYIVideoRange/*', 'LYImagePicker/Classes/*'
 
 	# s.resource_bundles = {
 	#   'LYImagePicker' => ['LYImagePicker/Assets/*.png']
