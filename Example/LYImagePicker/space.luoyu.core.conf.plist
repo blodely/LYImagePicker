@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>core-theme-color</key>
+	<dict>
+		<key>name</key>
+		<string>theme color in hex string</string>
+		<key>conf-value</key>
+		<string>#ffc91f</string>
+	</dict>
+	<key>core-net-domain</key>
+	<dict>
+		<key>name</key>
+		<string>Core Networking Domain</string>
+		<key>conf-value</key>
+		<string>app.luoyu.space</string>
+	</dict>
+	<key>core-net-json-null</key>
+	<dict>
+		<key>name</key>
+		<string>Core Networking JSON response parser remove Null key-values</string>
+		<key>conf-value</key>
+		<true/>
+	</dict>
+	<key>core-net-domain-dev</key>
+	<dict>
+		<key>name</key>
+		<string>Core Networking Dev Domain</string>
+		<key>conf-value</key>
+		<string>dev.luoyu.space</string>
+	</dict>
+	<key>core-net-timeout</key>
+	<dict>
+		<key>name</key>
+		<string>Core Networking Timeout Interval</string>
+		<key>conf-value</key>
+		<integer>7</integer>
+	</dict>
+	<key>core-net-api-path</key>
+	<dict>
+		<key>name</key>
+		<string>Core Networking API path</string>
+		<key>conf-value</key>
+		<string>/api</string>
+	</dict>
+	<key>core-net-api-path-dev</key>
+	<dict>
+		<key>name</key>
+		<string>Core Networking API path</string>
+		<key>conf-value</key>
+		<string>/api</string>
+	</dict>
+	<key>core-net-force-absolute-json</key>
+	<dict>
+		<key>name</key>
+		<string>Core Networking API : force absolute manager to parse everything as json</string>
+		<key>conf-value</key>
+		<false/>
+	</dict>
+	<key>core-net-is-secure-transport</key>
+	<dict>
+		<key>name</key>
+		<string>Transport Security Toggle</string>
+		<key>conf-value</key>
+		<string>https://</string>
+	</dict>
+	<key>core-net-is-secure-transport-dev</key>
+	<dict>
+		<key>name</key>
+		<string>Transport Security Dev Toggle</string>
+		<key>conf-value</key>
+		<string>http://</string>
+	</dict>
+	<key>core-location-denied-title</key>
+	<dict>
+		<key>name</key>
+		<string>Core Locating Permission Denied Title</string>
+		<key>conf-value</key>
+		<string>LYCore Demo need your app locating permission.</string>
+	</dict>
+	<key>core-location-denied-message</key>
+	<dict>
+		<key>name</key>
+		<string>Core Locating Permission Denied Message</string>
+		<key>conf-value</key>
+		<string>Change permission in Settings</string>
+	</dict>
+	<key>core-location-denied-cancel</key>
+	<dict>
+		<key>name</key>
+		<string>Core Locating Permission Denied button cancel</string>
+		<key>conf-value</key>
+		<string>Got it</string>
+	</dict>
+	<key>core-location-denied-settings</key>
+	<dict>
+		<key>name</key>
+		<string>Core Locating Permission Denied button goto settings</string>
+		<key>conf-value</key>
+		<string>Settings</string>
+	</dict>
+</dict>
+</plist>

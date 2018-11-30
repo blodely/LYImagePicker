@@ -116,7 +116,34 @@
 		self->ivLatestVideo.image = image;
 	}];
 	
-//	lyvideo
+	{
+		PHFetchOptions *options = [[PHFetchOptions alloc] init];
+		options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+		PHFetchResult *videos = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeVideo options:options];
+		
+		if ([videos count] <= 0) {
+			return;
+		}
+		
+		PHAsset *phasset = [videos firstObject];
+		
+		dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+		
+		PHVideoRequestOptions *voptions = [[PHVideoRequestOptions alloc] init];
+		__block AVAsset *asset;
+		
+		[[PHImageManager defaultManager] requestAVAssetForVideo:phasset options:voptions resultHandler:^(AVAsset * _Nullable assetin, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+			asset = assetin;
+			dispatch_semaphore_signal(semaphore);
+		}];
+		
+		dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+		
+		[opRange.svCont borderWithWidth:2 andColor:[UIColor whiteColor]];
+		opRange.asset = asset;
+		[opRange updateThumbnails];
+		opRange.indicatorBody.bdTop.backgroundColor = [UIColor coreThemeColor];
+	}
 }
 
 - (void)didReceiveMemoryWarning {

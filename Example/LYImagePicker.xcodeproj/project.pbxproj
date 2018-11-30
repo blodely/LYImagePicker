@@ -17,6 +17,7 @@
 		6003F5A7195388D20070C39A /* LYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* LYViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		89C08F5721B12F2C00ED4AAC /* space.luoyu.core.conf.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89C08F5621B12F2C00ED4AAC /* space.luoyu.core.conf.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85CB86556C9BC153D30EF969 /* Pods_LYImagePicker_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LYImagePicker_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89C08F5621B12F2C00ED4AAC /* space.luoyu.core.conf.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = space.luoyu.core.conf.plist; sourceTree = "<group>"; };
 		B0145AF3F68500CBCA67CD9D /* Pods-LYImagePicker_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LYImagePicker_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-LYImagePicker_Example/Pods-LYImagePicker_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C537BEA35CDE8C179873D5ED /* Pods-LYImagePicker_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LYImagePicker_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LYImagePicker_Example/Pods-LYImagePicker_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 				6003F59D195388D20070C39A /* LYAppDelegate.m */,
 				6003F5A5195388D20070C39A /* LYViewController.h */,
 				6003F5A6195388D20070C39A /* LYViewController.m */,
+				89C08F5621B12F2C00ED4AAC /* space.luoyu.core.conf.plist */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -192,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C08F5721B12F2C00ED4AAC /* space.luoyu.core.conf.plist in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
