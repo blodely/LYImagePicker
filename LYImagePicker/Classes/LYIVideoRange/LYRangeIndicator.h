@@ -28,7 +28,9 @@
 
 
 @interface LYRangeIndicator : LYView
-
 @property (weak, nonatomic) UIImageView *ivBg;
+@end
 
+@interface LYRangeIndicatorBorder : LYView
+@property (weak, nonatomic) UIImageView *ivBg;
 @end

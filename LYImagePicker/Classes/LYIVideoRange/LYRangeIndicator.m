@@ -28,10 +28,35 @@
 #import <Masonry/Masonry.h>
 
 
+// MARK: - LYRangeIndicator
+
 @interface LYRangeIndicator () {}
 @end
 
 @implementation LYRangeIndicator
+
+- (void)initial {
+	[super initial];
+	
+	{
+		UIImageView *imageview = [[UIImageView alloc] init];
+		[self addSubview:imageview];
+		_ivBg = imageview;
+		
+		[imageview mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self);
+		}];
+	}
+}
+
+@end
+
+// MARK: - LYRangeIndicatorBorder
+
+@interface LYRangeIndicatorBorder () {}
+@end
+
+@implementation LYRangeIndicatorBorder
 
 - (void)initial {
 	[super initial];
