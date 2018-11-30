@@ -185,4 +185,31 @@
 	}];
 }
 
+// MARK: - GENERATOR
+
+- (void)generateThumbnailsForAsset:(AVAsset *)asset bound:(CGSize)size numbers:(NSUInteger)count completed:(void (^)(NSArray<UIImage *> *))completion {
+	
+	float seconds = CMTimeGetSeconds(asset.duration);
+	
+	AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
+	generator.appliesPreferredTrackTransform = YES;
+	
+	NSMutableArray<UIImage *> *result = [NSMutableArray arrayWithCapacity:1];
+	
+	for (NSInteger i = 0; i < count; i++) {
+		CMTime time = CMTimeMakeWithSeconds((seconds * ((float)i / count)), 24);
+		UIImage *image = [UIImage imageWithCGImage:[generator copyCGImageAtTime:time actualTime:nil error:NULL]];
+		[result addObject:[image resize:size]];
+	}
+	
+	if (completion != nil) {
+		completion([NSArray arrayWithArray:result]);
+	} else {
+		NSLog(@"BLOCK NOT FOUND");
+	}
+	
+	[result removeAllObjects];
+	result = nil;
+}
+
 @end

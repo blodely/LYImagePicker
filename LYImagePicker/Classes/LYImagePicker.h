@@ -83,4 +83,8 @@ typedef void(^LYMediaPickerDone)(NSArray *results);
  */
 - (void)requestLatestVideoCoverComplete:(void (^)(UIImage *image))complete;
 
+// MARK: - GENERATOR
+
+- (void)generateThumbnailsForAsset:(AVAsset *)asset bound:(CGSize)size numbers:(NSUInteger)count completed:(void (^)(NSArray<UIImage *> *thumbnails))completion;
+
 @end
