@@ -16,6 +16,12 @@ it, simply add the following line to your Podfile:
 pod "LYImagePicker"
 ```
 
+### bleeding edge
+
+```ruby
+pod 'LYImagePicker', :git => 'https://github.com/blodely/LYImagePicker.git'
+```
+
 ## Author
 
 Luo Yu, indie.luo@gmail.com
