@@ -26,11 +26,13 @@
 
 #import "LYVideoRange.h"
 #import "LYRangeIndicator.h"
+#import "LYImagePicker.h"
 #import <Masonry/Masonry.h>
 
 
 @interface LYVideoRange () {
 	
+	CGFloat cheight;
 	CGFloat padding;
 }
 @end
@@ -48,6 +50,7 @@
 		// MARK: CONF
 		self.backgroundColor = [UIColor clearColor];
 		padding = 5;
+		cheight = 60;
 	}
 	
 	{
@@ -57,29 +60,60 @@
 		_svCont = scrollview;
 		
 		[scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(self).offset(padding);
-			make.bottom.equalTo(self).offset(-padding);
+			make.top.equalTo(self).offset(self->padding);
+			make.bottom.equalTo(self).offset(-self->padding);
 			make.left.right.equalTo(self);
-			make.height.mas_equalTo(60);
+			make.height.mas_equalTo(self->cheight);
 		}];
+		
+		_svCont.showsVerticalScrollIndicator = NO;
+		_svCont.showsHorizontalScrollIndicator = NO;
+		_svCont.backgroundColor = [UIColor clearColor];
 	}
 	
 	{
 		LYRangeIndicator *indicator = [LYRangeIndicator view];
-		indicator.frame = (CGRect){0, padding, 20, 60};
+		indicator.frame = (CGRect){0, self->padding, 20, 60};
 		[self addSubview:indicator];
 		_indicatorBegin = indicator;
 	}
 	
 	{
 		LYRangeIndicator *indicator = [LYRangeIndicator view];
-		indicator.frame = (CGRect){100, padding, 20, 60};
+		indicator.frame = (CGRect){100, self->padding, 20, 60};
 		[self addSubview:indicator];
 		_indicatorEnd = indicator;
 	}
 }
 
 // MARK: - METHOD
+
+- (void)updateThumbnails {
+	
+	for (id one in [_svCont subviews]) {
+		[one removeFromSuperview];
+	}
+	
+	[[LYImagePicker kit] generateThumbnailsForAsset:_asset bound:(CGSize){120, 120} numbers:10 completed:^(NSArray<UIImage *> *thumbnails) {
+		
+		if (thumbnails == nil) {
+			// NO IMAGE
+			return;
+		}
+		
+		CGSize size = (CGSize){floorf(thumbnails.firstObject.size.width / thumbnails.firstObject.size.height * cheight), cheight};
+		
+		for (NSInteger i = 0; i < [thumbnails count]; i++) {
+			
+			UIImageView *iv = [[UIImageView alloc] init];
+			iv.frame = (CGRect){size.width * i, 0, size.width, size.height};
+			iv.image = thumbnails[i];
+			[_svCont addSubview:iv];
+			
+			_svCont.contentSize = (CGSize){CGRectGetMaxX(iv.frame), cheight};
+		}
+	}];
+}
 
 // MARK: PRIVATE METHOD
 

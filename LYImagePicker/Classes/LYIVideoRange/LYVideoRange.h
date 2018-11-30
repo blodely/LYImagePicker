@@ -26,13 +26,17 @@
 
 #import <LYCore/LYCore.h>
 #import <LYImagePicker/LYRangeIndicator.h>
+#import <Photos/Photos.h>
 
 
 @interface LYVideoRange : LYView
 
+@property (nonatomic, strong) AVAsset *asset;
 @property (nonatomic, weak) UIScrollView *svCont;
 
 @property (nonatomic, weak)	LYRangeIndicator *indicatorBegin;
 @property (nonatomic, weak) LYRangeIndicator *indicatorEnd;
+
+- (void)updateThumbnails;
 
 @end
