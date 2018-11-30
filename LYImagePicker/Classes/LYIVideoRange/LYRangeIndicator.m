@@ -1,5 +1,5 @@
 //
-//	LYVideoRange.m
+//	LYRangeIndicator.m
 //	LYImagePicker
 //
 //	CREATED BY LUO YU ON 2018-11-30.
@@ -24,63 +24,27 @@
 //	THE SOFTWARE.
 //
 
-#import "LYVideoRange.h"
 #import "LYRangeIndicator.h"
 #import <Masonry/Masonry.h>
 
 
-@interface LYVideoRange () {
-	
-	CGFloat padding;
-}
+@interface LYRangeIndicator () {}
 @end
 
-@implementation LYVideoRange
-
-// MARK: - ACTION
-
-// MARK: - INIT
+@implementation LYRangeIndicator
 
 - (void)initial {
 	[super initial];
 	
 	{
-		// MARK: CONF
-		self.backgroundColor = [UIColor clearColor];
-		padding = 5;
-	}
-	
-	{
-		// MARK: THUMBNAILS
-		UIScrollView *scrollview = [[UIScrollView alloc] init];
-		[self addSubview:scrollview];
-		_svCont = scrollview;
+		UIImageView *imageview = [[UIImageView alloc] init];
+		[self addSubview:imageview];
+		_ivBg = imageview;
 		
-		[scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(self).offset(padding);
-			make.bottom.equalTo(self).offset(-padding);
-			make.left.right.equalTo(self);
-			make.height.mas_equalTo(60);
+		[imageview mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self);
 		}];
 	}
-	
-	{
-		LYRangeIndicator *indicator = [LYRangeIndicator view];
-		indicator.frame = (CGRect){0, padding, 20, 60};
-		[self addSubview:indicator];
-		_indicatorBegin = indicator;
-	}
-	
-	{
-		LYRangeIndicator *indicator = [LYRangeIndicator view];
-		indicator.frame = (CGRect){100, padding, 20, 60};
-		[self addSubview:indicator];
-		_indicatorEnd = indicator;
-	}
 }
-
-// MARK: - METHOD
-
-// MARK: PRIVATE METHOD
 
 @end

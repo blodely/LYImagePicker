@@ -1,5 +1,5 @@
 //
-//	LYVideoRange.m
+//	LYRangeIndicator.h
 //	LYImagePicker
 //
 //	CREATED BY LUO YU ON 2018-11-30.
@@ -24,63 +24,11 @@
 //	THE SOFTWARE.
 //
 
-#import "LYVideoRange.h"
-#import "LYRangeIndicator.h"
-#import <Masonry/Masonry.h>
+#import <LYCore/LYCore.h>
 
 
-@interface LYVideoRange () {
-	
-	CGFloat padding;
-}
-@end
+@interface LYRangeIndicator : LYView
 
-@implementation LYVideoRange
-
-// MARK: - ACTION
-
-// MARK: - INIT
-
-- (void)initial {
-	[super initial];
-	
-	{
-		// MARK: CONF
-		self.backgroundColor = [UIColor clearColor];
-		padding = 5;
-	}
-	
-	{
-		// MARK: THUMBNAILS
-		UIScrollView *scrollview = [[UIScrollView alloc] init];
-		[self addSubview:scrollview];
-		_svCont = scrollview;
-		
-		[scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(self).offset(padding);
-			make.bottom.equalTo(self).offset(-padding);
-			make.left.right.equalTo(self);
-			make.height.mas_equalTo(60);
-		}];
-	}
-	
-	{
-		LYRangeIndicator *indicator = [LYRangeIndicator view];
-		indicator.frame = (CGRect){0, padding, 20, 60};
-		[self addSubview:indicator];
-		_indicatorBegin = indicator;
-	}
-	
-	{
-		LYRangeIndicator *indicator = [LYRangeIndicator view];
-		indicator.frame = (CGRect){100, padding, 20, 60};
-		[self addSubview:indicator];
-		_indicatorEnd = indicator;
-	}
-}
-
-// MARK: - METHOD
-
-// MARK: PRIVATE METHOD
+@property (weak, nonatomic) UIImageView *ivBg;
 
 @end

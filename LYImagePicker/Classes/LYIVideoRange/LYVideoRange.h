@@ -25,10 +25,14 @@
 //
 
 #import <LYCore/LYCore.h>
+#import <LYImagePicker/LYRangeIndicator.h>
 
 
 @interface LYVideoRange : LYView
 
-@end
+@property (nonatomic, weak) UIScrollView *svCont;
 
-NS_ASSUME_NONNULL_END
+@property (nonatomic, weak)	LYRangeIndicator *indicatorBegin;
+@property (nonatomic, weak) LYRangeIndicator *indicatorEnd;
+
+@end

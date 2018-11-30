@@ -16,6 +16,7 @@
 	
 	__weak UIButton *btnGridPick;
 	__weak UIImageView *ivLatestVideo;
+	__weak LYVideoRange *opRange;
 }
 
 @end
@@ -60,6 +61,22 @@
 			make.width.height.mas_equalTo(80);
 		}];
 	}
+	
+	{
+		LYVideoRange *rangeview = [LYVideoRange view];
+		[self.view addSubview:rangeview];
+		opRange = rangeview;
+		[opRange border1Px];
+		[rangeview mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(self->ivLatestVideo.mas_bottom).offset(padding);
+			make.left.equalTo(self.view).offset(padding);
+			make.right.equalTo(self.view).offset(-padding);
+			make.height.mas_equalTo(70);
+		}];
+		
+		opRange.indicatorBegin.ivBg.image = [UIImage imageNamed:@"indicator-bg"];
+		opRange.indicatorEnd.ivBg.image = [UIImage imageNamed:@"indicator-bg"];
+	}
 }
 
 - (void)viewDidLoad {
@@ -98,6 +115,8 @@
 	[[LYImagePicker kit] requestLatestVideoCoverComplete:^(UIImage *image) {
 		self->ivLatestVideo.image = image;
 	}];
+	
+//	lyvideo
 }
 
 - (void)didReceiveMemoryWarning {
