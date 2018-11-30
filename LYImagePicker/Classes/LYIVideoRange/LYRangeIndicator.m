@@ -73,3 +73,44 @@
 }
 
 @end
+
+// MARK: - LYRangeIndicatorBody
+
+@interface LYRangeIndicatorBody () {}
+@end
+
+@implementation LYRangeIndicatorBody
+
+- (void)initial {
+	[super initial];
+	
+	{
+		self.backgroundColor = [UIColor clearColor];
+	}
+	
+	{
+		// MARK: TOP BORDER
+		LYRangeIndicatorBorder *border = [LYRangeIndicatorBorder view];
+		[self addSubview:border];
+		_bdTop = border;
+		
+		[border mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.left.right.equalTo(self);
+			make.height.mas_equalTo(1);
+		}];
+	}
+	
+	{
+		// MARK: BOTTOM BORDER
+		LYRangeIndicatorBorder *border = [LYRangeIndicatorBorder view];
+		[self addSubview:border];
+		_bdBottom = border;
+		
+		[border mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.bottom.left.right.equalTo(self);
+			make.height.mas_equalTo(1);
+		}];
+	}
+}
+
+@end

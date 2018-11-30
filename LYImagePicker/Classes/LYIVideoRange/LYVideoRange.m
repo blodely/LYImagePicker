@@ -41,6 +41,14 @@
 
 // MARK: - ACTION
 
+- (void)dragIndicatorBegin:(UIPanGestureRecognizer *)sender {
+	[self indicator:YES gesture:sender];
+}
+
+- (void)dragIndicatorEnd:(UIPanGestureRecognizer *)sender {
+	[self indicator:NO gesture:sender];
+}
+
 // MARK: - INIT
 
 - (void)initial {
@@ -72,17 +80,41 @@
 	}
 	
 	{
-		LYRangeIndicator *indicator = [LYRangeIndicator view];
-		indicator.frame = (CGRect){0, self->padding, 20, 60};
+		LYRangeIndicatorBody *indicator = [LYRangeIndicatorBody view];
+		indicator.frame = (CGRect){0, padding, 0, cheight};
 		[self addSubview:indicator];
-		_indicatorBegin = indicator;
+		_indicatorBody = indicator;
 	}
 	
 	{
+		// MARK: INDICATOR LEFT
 		LYRangeIndicator *indicator = [LYRangeIndicator view];
-		indicator.frame = (CGRect){100, self->padding, 20, 60};
+		indicator.frame = (CGRect){0, padding, 20, cheight};
+		[self addSubview:indicator];
+		_indicatorBegin = indicator;
+		
+		UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragIndicatorBegin:)];
+		[_indicatorBegin addGestureRecognizer:pan];
+	}
+	
+	{
+		// MARK: INDICATOR RIGHT
+		LYRangeIndicator *indicator = [LYRangeIndicator view];
+		indicator.frame = (CGRect){100, padding, 20, cheight};
 		[self addSubview:indicator];
 		_indicatorEnd = indicator;
+		
+		UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragIndicatorEnd:)];
+		[_indicatorEnd addGestureRecognizer:pan];
+	}
+	
+	{
+		// MARK: PROGRESS LINE
+		LYView *view = [LYView view];
+		view.frame = (CGRect){0, 0, 4, cheight + padding + padding};
+		view.backgroundColor = [UIColor whiteColor];
+		[self addSubview:view];
+		_line = view;
 	}
 }
 
@@ -116,5 +148,25 @@
 }
 
 // MARK: PRIVATE METHOD
+
+- (void)indicator:(BOOL)isBeginOrNot gesture:(UIPanGestureRecognizer *)sender {
+	
+	switch (sender.state) {
+		case UIGestureRecognizerStateBegan: {
+			
+		} break;
+		case UIGestureRecognizerStateEnded: {
+			
+		} break;
+		default:
+			break;
+	}
+	
+	if (isBeginOrNot) {
+		
+	} else {
+		
+	}
+}
 
 @end

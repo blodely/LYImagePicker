@@ -36,6 +36,12 @@
 
 @property (nonatomic, weak)	LYRangeIndicator *indicatorBegin;
 @property (nonatomic, weak) LYRangeIndicator *indicatorEnd;
+@property (nonatomic, weak) LYRangeIndicatorBody *indicatorBody;
+@property (nonatomic, weak) LYView *line;
+
+@property (nonatomic, assign) CGFloat minDuration;
+@property (nonatomic, assign) CGFloat maxDuration;
+
 
 - (void)updateThumbnails;
 
