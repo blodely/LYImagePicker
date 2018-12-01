@@ -45,7 +45,7 @@ typedef void(^LYMediaPickerDone)(NSArray *results);
  */
 - (void)authorizationStatus:(void (^)(PHAuthorizationStatus status))result;
 
-- (BOOL)authorizationCheck;
+- (BOOL)authorizationPhotoCheck;
 
 // MARK: - FETCH RESOURCES
 

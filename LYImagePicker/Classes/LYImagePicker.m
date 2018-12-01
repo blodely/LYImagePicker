@@ -52,13 +52,13 @@
 	result([PHPhotoLibrary authorizationStatus]);
 }
 
-- (BOOL)authorizationCheck {
+- (BOOL)authorizationPhotoCheck {
 	return [PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized;
 }
 
 - (void)fetchPicture:(void (^)(NSArray<PHAsset *> *))action {
 	
-	if ([self authorizationCheck] == NO) {
+	if ([self authorizationPhotoCheck] == NO) {
 		return;
 	}
 	
@@ -87,7 +87,7 @@
 
 - (void)fetchVideo:(void (^)(NSArray<PHAsset *> *))action {
 	
-	if ([self authorizationCheck] == NO) {
+	if ([self authorizationPhotoCheck] == NO) {
 		return;
 	}
 	
