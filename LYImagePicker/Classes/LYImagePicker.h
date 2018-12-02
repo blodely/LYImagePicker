@@ -43,7 +43,7 @@ typedef void(^LYMediaPickerDone)(NSArray *results);
 
  @param result result block
  */
-- (void)authorizationStatus:(void (^)(PHAuthorizationStatus status))result;
+- (void)authorizationPhotoStatus:(void (^)(PHAuthorizationStatus status))result;
 
 - (BOOL)authorizationPhotoCheck;
 

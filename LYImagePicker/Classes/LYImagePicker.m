@@ -48,7 +48,7 @@
 
 // MARK: - METHOD
 
-- (void)authorizationStatus:(void (^)(PHAuthorizationStatus status))result {
+- (void)authorizationPhotoStatus:(void (^)(PHAuthorizationStatus status))result {
 	result([PHPhotoLibrary authorizationStatus]);
 }
 

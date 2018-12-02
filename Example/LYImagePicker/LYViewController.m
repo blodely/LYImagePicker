@@ -83,7 +83,7 @@
 	[super viewDidLoad];
 	// DO ANY ADDITIONAL SETUP AFTER LOADING THE VIEW, TYPICALLY FROM A NIB.
 	
-	[[LYImagePicker kit] authorizationStatus:^(PHAuthorizationStatus status) {
+	[[LYImagePicker kit] authorizationPhotoStatus:^(PHAuthorizationStatus status) {
 		switch (status) {
 			case PHAuthorizationStatusNotDetermined: {
 				// REQUEST
