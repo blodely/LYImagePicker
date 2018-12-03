@@ -25,6 +25,8 @@
 //
 
 #import "LYImagePicker.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 @implementation LYImagePicker
 
@@ -55,6 +57,12 @@
 - (BOOL)authorizationPhotoCheck {
 	return [PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized;
 }
+
+- (void)authorizationCameraStatus:(void (^)(BOOL granted))result {
+	[AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:result];
+}
+
+// MARK: -
 
 - (void)fetchPicture:(void (^)(NSArray<PHAsset *> *))action {
 	

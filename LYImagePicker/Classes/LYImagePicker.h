@@ -47,6 +47,8 @@ typedef void(^LYMediaPickerDone)(NSArray *results);
 
 - (BOOL)authorizationPhotoCheck;
 
+- (void)authorizationCameraStatus:(void (^)(BOOL granted))result;
+
 // MARK: - FETCH RESOURCES
 
 //- (void)fetchMedia;
