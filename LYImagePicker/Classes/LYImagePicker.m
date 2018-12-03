@@ -76,6 +76,7 @@
 	
 	PHFetchOptions *options = [[PHFetchOptions alloc] init];
 	options.includeHiddenAssets = YES;
+	options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
 	
 	NSMutableArray<PHAsset *> *assets = [NSMutableArray arrayWithCapacity:1];
 	
@@ -105,6 +106,7 @@
 	
 	PHFetchOptions *options = [[PHFetchOptions alloc] init];
 	options.includeHiddenAssets = YES;
+	options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
 	
 	NSMutableArray<PHAsset *> *assets = [NSMutableArray arrayWithCapacity:1];
 	
