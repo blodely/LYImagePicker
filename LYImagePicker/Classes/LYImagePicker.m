@@ -62,6 +62,10 @@
 	[AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:result];
 }
 
+- (BOOL)authorizationCameraCheck {
+	return [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusAuthorized;
+}
+
 // MARK: -
 
 - (void)fetchPicture:(void (^)(NSArray<PHAsset *> *))action {
