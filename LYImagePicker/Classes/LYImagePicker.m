@@ -58,8 +58,8 @@
 	return [PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized;
 }
 
-- (void)authorizationCameraStatus:(void (^)(BOOL granted))result {
-	[AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:result];
+- (void)authorizationCameraStatus:(void (^)(AVAuthorizationStatus))result {
+	result([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo]);
 }
 
 - (BOOL)authorizationCameraCheck {

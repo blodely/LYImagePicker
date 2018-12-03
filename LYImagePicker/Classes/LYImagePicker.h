@@ -26,6 +26,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
+#import <AVFoundation/AVCaptureDevice.h>
 #import <LYImagePicker/LYMediaGridPickerViewController.h>
 #import <LYImagePicker/LYMediaGridCell.h>
 #import <LYImagePicker/LYMediaCandidateCell.h>
@@ -52,7 +53,7 @@ typedef void(^LYMediaPickerDone)(NSArray *results);
  */
 - (BOOL)authorizationPhotoCheck;
 
-- (void)authorizationCameraStatus:(void (^)(BOOL granted))result;
+- (void)authorizationCameraStatus:(void (^)(AVAuthorizationStatus status))result;
 
 /**
  check camera authorization status
