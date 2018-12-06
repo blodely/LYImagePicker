@@ -263,6 +263,19 @@
 	
 	if (collectionView == cvGrid) {
 		// GONNA DESELECT
+		
+		if ([[dsSelIdx lastObject] integerValue] != idp.item) {
+			// NOT THE LAST ONE
+			
+			for (NSInteger i = [dsSelIdx indexOfObject:@(idp.item)]; i < [dsSelIdx count]; i++) {
+				// CHANGE ALL PREVIOUSLY SELECTED ITEM IDX
+				NSIndexPath *idx = [NSIndexPath indexPathForItem:[dsSelIdx[i] integerValue] inSection:0];
+				__weak LYMediaGridCell *cell = (LYMediaGridCell *)[collectionView cellForItemAtIndexPath:idx];
+				cell.lblSelIdx.text = [@(i) string];
+			}
+		}
+		
+		// REMOVE SELECTION
 		[dsSelIdx removeObject:@(idp.item)];
 		
 		__weak LYMediaGridCell *cell = (LYMediaGridCell *)[collectionView cellForItemAtIndexPath:idp];
