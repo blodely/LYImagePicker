@@ -26,6 +26,8 @@
 
 #import "LYImagePicker.h"
 #import <AVFoundation/AVFoundation.h>
+#import <ImageIO/ImageIO.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 
 @implementation LYImagePicker
@@ -224,6 +226,78 @@
 	
 	[result removeAllObjects];
 	result = nil;
+}
+
+- (void)composeGifAnimationWithImages:(NSArray<UIImage *> *)images
+					   delayEachFrame:(CGFloat)delayparam
+					  destinationPath:(NSString *)filepathparam
+							completed:(void (^)(void))completion {
+	
+	if (images == nil) {
+		if (completion != nil) {
+			completion();
+		}
+		return;
+	}
+	
+	NSString *filepath;
+	if (filepathparam == nil || [filepathparam isKindOfClass:[NSString class]] == NO) {
+		// FILEPATH ERROR
+		// SET DEFAULT
+		filepath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/animated.gif"];
+	} else {
+		filepath = filepathparam;
+	}
+	
+	CGFloat delay;
+	if (delayparam > 0) {
+		delay = delayparam;
+	} else {
+		// DELAY PARAMETER ERROR
+		// SET DEFAULT
+		delay = ANIMATE;
+	}
+	
+	dispatch_async(dispatch_get_global_queue(0, 0), ^{
+		
+		NSDictionary *propertiesFile = @{
+										 (__bridge id)kCGImagePropertyGIFDictionary:@{
+												 (__bridge id)kCGImagePropertyGIFLoopCount:@(0),
+												 // 0 = LOOP FOREVER
+												 },
+										 };
+		NSDictionary *propertiesFrame = @{
+										  (__bridge id)kCGImagePropertyGIFDictionary:@{
+												  (__bridge id)kCGImagePropertyGIFDelayTime:@(delay),
+												  },
+										  };
+		
+		CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)[NSURL fileURLWithPath:filepath], kUTTypeGIF, [images count], NULL);
+		CGImageDestinationSetProperties(destination, (__bridge CFDictionaryRef)propertiesFile);
+		
+		for (UIImage *image in images) {
+			@autoreleasepool {
+				CGImageRef imgref = image.CGImage;
+				CGImageDestinationAddImage(destination, imgref, (__bridge CFDictionaryRef)propertiesFrame);
+			}
+		}
+		
+		if (!CGImageDestinationFinalize(destination)) {
+			NSLog(@"LYImagePicker - COMPOSE GIF - DESTINATION FAILED");
+		} else {
+			NSLog(@"LYImagePicker - COMPOSE GIF - DONE");
+		}
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			// CALL COMPLETION BLOCK
+			if (completion != nil) {
+				completion();
+			}
+		});
+		
+		// RELEASE DESTINATION
+		CFRelease(destination);
+	});
 }
 
 @end

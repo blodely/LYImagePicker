@@ -100,6 +100,13 @@ typedef void(^LYMediaPickerDone)(NSArray *results);
 
 // MARK: - GENERATOR
 
-- (void)generateThumbnailsForAsset:(AVAsset *)asset bound:(CGSize)size numbers:(NSUInteger)count completed:(void (^)(NSArray<UIImage *> *thumbnails))completion;
+- (void)generateThumbnailsForAsset:(AVAsset *)asset bound:(CGSize)size
+						   numbers:(NSUInteger)count
+						 completed:(void (^)(NSArray<UIImage *> *thumbnails))completion;
+
+- (void)composeGifAnimationWithImages:(NSArray<UIImage *> *)images
+					   delayEachFrame:(CGFloat)delay
+					  destinationPath:(NSString *)filepath
+							completed:(void (^)(void))completion;
 
 @end
