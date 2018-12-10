@@ -10,6 +10,7 @@
 #import <LYImagePicker/LYImagePicker.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import <Masonry/Masonry.h>
+#import <FLAnimatedImage/FLAnimatedImage.h>
 
 
 @interface LYViewController () {
@@ -17,6 +18,7 @@
 	__weak UIButton *btnGridPick;
 	__weak UIImageView *ivLatestVideo;
 	__weak LYVideoRange *opRange;
+	__weak FLAnimatedImageView *ivGif;
 }
 
 @end
@@ -76,6 +78,19 @@
 		
 		opRange.indicatorBegin.ivBg.image = [UIImage imageNamed:@"indicator-bg"];
 		opRange.indicatorEnd.ivBg.image = [UIImage imageNamed:@"indicator-bg"];
+	}
+	
+	{
+		FLAnimatedImageView *imageview = [[FLAnimatedImageView alloc] init];
+		[self.view addSubview:imageview];
+		ivGif = imageview;
+		
+		[imageview mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(self->opRange.mas_bottom).offset(padding);
+			make.left.equalTo(self.view).offset(padding);
+			make.right.equalTo(self.view).offset(-padding);
+			make.height.mas_equalTo(100);
+		}];
 	}
 }
 
@@ -143,6 +158,14 @@
 		opRange.asset = asset;
 		[opRange updateThumbnails];
 		opRange.indicatorBody.bdTop.backgroundColor = [UIColor coreThemeColor];
+		
+		[[LYImagePicker kit] generateThumbnailsForAsset:asset bound:(CGSize){200, 200} numbers:5 completed:^(NSArray<UIImage *> *thumbnails) {
+			NSString *gifpath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/the_animate.gif"];
+			[[LYImagePicker kit] composeGifAnimationWithImages:thumbnails delayEachFrame:0.03 destinationPath:gifpath completed:^{
+				NSLog(@"\nGIF IMAGE GENERATED\n\t%@", gifpath);
+				self->ivGif.animatedImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfFile:gifpath]];
+			}];
+		}];
 	}
 }
 
