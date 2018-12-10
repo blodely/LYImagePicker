@@ -33,7 +33,7 @@ A Custom Image Picker.
 	# s.frameworks = 'UIKit', 'MapKit'
 	# s.dependency 'AFNetworking', '~> 2.3'
 
-	s.ios.frameworks = 'UIKit', 'Photos', 'AVFoundation'
+	s.ios.frameworks = 'UIKit', 'Photos', 'AVFoundation', 'ImageIO', 'MobileCoreServices'
 	
 	s.ios.dependency 'LYCategory'
 	s.ios.dependency 'LYCore'
