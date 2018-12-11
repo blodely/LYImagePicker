@@ -29,9 +29,10 @@
 #import <Photos/Photos.h>
 
 
-@interface LYVideoRange : LYView
+@interface LYVideoRange : LYControl
 
 @property (nonatomic, strong) AVAsset *asset;
+@property (nonatomic, readonly) NSUInteger assetDuration;
 @property (nonatomic, weak) UIScrollView *svCont;
 
 @property (nonatomic, weak)	LYRangeIndicator *indicatorBegin;
@@ -39,9 +40,13 @@
 @property (nonatomic, weak) LYRangeIndicatorBody *indicatorBody;
 @property (nonatomic, weak) LYView *line;
 
-@property (nonatomic, assign) CGFloat minDuration;
-@property (nonatomic, assign) CGFloat maxDuration;
+@property (nonatomic, assign) NSUInteger minDuration;
+@property (nonatomic, assign) NSUInteger maxDuration;
 
+@property (nonatomic, assign) NSUInteger beginSeconds;
+@property (nonatomic, assign) NSUInteger endSeconds;
+
+@property (nonatomic, readonly) CGSize contentSize;
 
 - (void)updateThumbnails;
 

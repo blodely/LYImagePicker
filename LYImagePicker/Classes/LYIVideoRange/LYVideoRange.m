@@ -32,8 +32,12 @@
 
 @interface LYVideoRange () {
 	
+	CGFloat cwidth;
 	CGFloat cheight;
 	CGFloat padding;
+	
+	CGFloat previousLeft;
+	CGFloat previousRight;
 }
 @end
 
@@ -55,14 +59,15 @@
 	[super initial];
 	
 	{
-		// MARK: CONF
+		// MARK: ┌ CONF
 		self.backgroundColor = [UIColor clearColor];
 		padding = 5;
+		cwidth = 20;
 		cheight = 60;
 	}
 	
 	{
-		// MARK: THUMBNAILS
+		// MARK: ├ THUMBNAILS
 		UIScrollView *scrollview = [[UIScrollView alloc] init];
 		[self addSubview:scrollview];
 		_svCont = scrollview;
@@ -80,36 +85,39 @@
 	}
 	
 	{
+		// MARK: ├ INDICATOR BODY
 		LYRangeIndicatorBody *indicator = [LYRangeIndicatorBody view];
-		indicator.frame = (CGRect){0, padding, 0, cheight};
-		[self addSubview:indicator];
+		indicator.frame = (CGRect){0, 0, 0, cheight};
+		[_svCont addSubview:indicator];
 		_indicatorBody = indicator;
 	}
 	
 	{
-		// MARK: INDICATOR LEFT
+		// MARK: ├ INDICATOR LEFT
 		LYRangeIndicator *indicator = [LYRangeIndicator view];
-		indicator.frame = (CGRect){0, padding, 20, cheight};
-		[self addSubview:indicator];
+		indicator.frame = (CGRect){0, 0, cwidth, cheight};
+		[_svCont addSubview:indicator];
 		_indicatorBegin = indicator;
+		_indicatorBegin.backgroundColor = [self tintColor];
 		
 		UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragIndicatorBegin:)];
 		[_indicatorBegin addGestureRecognizer:pan];
 	}
 	
 	{
-		// MARK: INDICATOR RIGHT
+		// MARK: ├ INDICATOR RIGHT
 		LYRangeIndicator *indicator = [LYRangeIndicator view];
-		indicator.frame = (CGRect){100, padding, 20, cheight};
-		[self addSubview:indicator];
+		indicator.frame = (CGRect){0, 0, cwidth, cheight};
+		[_svCont addSubview:indicator];
 		_indicatorEnd = indicator;
+		_indicatorEnd.backgroundColor = [self tintColor];
 		
 		UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragIndicatorEnd:)];
 		[_indicatorEnd addGestureRecognizer:pan];
 	}
 	
 	{
-		// MARK: PROGRESS LINE
+		// MARK: └ PROGRESS LINE
 		LYView *view = [LYView view];
 		view.frame = (CGRect){0, 0, 4, cheight + padding + padding};
 		view.backgroundColor = [UIColor whiteColor];
@@ -123,15 +131,22 @@
 - (void)updateThumbnails {
 	
 	for (id one in [_svCont subviews]) {
-		[one removeFromSuperview];
+		if ([one isKindOfClass:[UIImageView class]]) {
+			[one removeFromSuperview];
+		} else {
+			NSLog(@"%@", [one class]);
+		}
 	}
 	
-	[[LYImagePicker kit] generateThumbnailsForAsset:_asset bound:(CGSize){120, 120} numbers:10 completed:^(NSArray<UIImage *> *thumbnails) {
+	[[LYImagePicker kit] generateThumbnailsForAsset:_asset bound:(CGSize){cheight * 2, cheight * 2} numbers:10 completed:^(NSArray<UIImage *> *thumbnails) {
 		
 		if (thumbnails == nil) {
 			// NO IMAGE
 			return;
 		}
+		
+		_assetDuration = (NSUInteger)CMTimeGetSeconds(_asset.duration);
+		NSLog(@"GET ASSET DURATION %@", @(_assetDuration));
 		
 		CGSize size = (CGSize){floorf(thumbnails.firstObject.size.width / thumbnails.firstObject.size.height * cheight), cheight};
 		
@@ -141,32 +156,95 @@
 			iv.frame = (CGRect){size.width * i, 0, size.width, size.height};
 			iv.image = thumbnails[i];
 			[_svCont addSubview:iv];
+			[_svCont sendSubviewToBack:iv];
 			
 			_svCont.contentSize = (CGSize){CGRectGetMaxX(iv.frame), cheight};
+			
+			// MARK: ├ RESET CONTENT SIZE
+			_contentSize = _svCont.contentSize;
 		}
+		
+		// MARK: ├ RESET BEGIN FRAME
+		_indicatorBegin.frame = (CGRect){0, 0, cwidth, cheight};
+		_beginSeconds = 0;
+		previousLeft = 0;
+		
+		// MARK: ├ RESET END FRAME
+		_indicatorEnd.frame = (CGRect){MIN(_maxDuration, _assetDuration) / _assetDuration * _contentSize.width, 0, cwidth, cheight};
+		_endSeconds = MIN(_maxDuration, _assetDuration);
+		previousRight = _endSeconds / _assetDuration * _contentSize.width;
 	}];
+	
+	
 }
+
+// MARK: PROPERTY
 
 // MARK: PRIVATE METHOD
 
-- (void)indicator:(BOOL)isBeginOrNot gesture:(UIPanGestureRecognizer *)sender {
+- (void)indicator:(BOOL)isBeginOrNot gesture:(UIPanGestureRecognizer *)gesture {
 	
-	switch (sender.state) {
+	switch (gesture.state) {
 		case UIGestureRecognizerStateBegan: {
-			
 		} break;
 		case UIGestureRecognizerStateEnded: {
+			if (isBeginOrNot) {
+				previousLeft = gesture.view.frame.origin.x;
+			} else {
+				previousRight = gesture.view.frame.origin.x;
+			}
+		} break;
+		case UIGestureRecognizerStateChanged: {
+			
+			if (isBeginOrNot) {
+				
+				CGPoint tspt = [gesture translationInView:gesture.view];
+				CGPoint retpt = _indicatorBegin.center;
+				NSLog(@"%@ %@", @(retpt.x), @(tspt.x));
+				retpt.x = previousLeft + tspt.x;
+				NSLog(@"%@ %@ %@", @(retpt.x), @(_assetDuration), @(_contentSize.width));
+				retpt.x = MIN(retpt.x, floorf((CGFloat)(_assetDuration - _minDuration) / _assetDuration * _contentSize.width - cwidth * 0.5));
+				NSLog(@"%@ %@", @(retpt.x), @(cwidth * 0.5));
+				retpt.x = MAX(retpt.x, cwidth * 0.5);
+				NSLog(@"%@", @(retpt.x));
+//				retpt.x = MAX(MIN(previousLeft + tspt.x, (_assetDuration - _minDuration) / _assetDuration * _contentSize.width - cwidth * 0.5), cwidth * 0.5);
+				_indicatorBegin.center = retpt;
+				
+			} else {
+				
+				CGPoint tspt = [gesture translationInView:gesture.view];
+				CGPoint retpt = _indicatorEnd.center;
+				retpt.x = previousRight + tspt.x;
+				_indicatorEnd.center = retpt;
+			}
 			
 		} break;
 		default:
 			break;
 	}
 	
+	/*
 	if (isBeginOrNot) {
-		
 	} else {
-		
 	}
+	*/
+	
+	// MARK: ├ CALCULATE INDICATOR POSITION IN TIMELINE
+	_beginSeconds = _indicatorBegin.frame.origin.x / _contentSize.width * _assetDuration;
+	_endSeconds = CGRectGetMaxX(_indicatorEnd.frame) / _contentSize.width * _assetDuration;
+	NSLog(@"BEGIN %@ END %@", @(_beginSeconds), @(_endSeconds));
+	
+	// CAUSE VALUE CHANGED EVENT
+	[self sendActionsForControlEvents:UIControlEventValueChanged];
+	
+	// CONFIGURE FRAMES
+	[self resetSliders];
 }
+
+- (void)resetSliders {
+	_indicatorBegin.frame = (CGRect){(CGFloat)_beginSeconds / _maxDuration * _contentSize.width, 0, cwidth, cheight};
+	_indicatorEnd.frame = (CGRect){(CGFloat)_endSeconds / _maxDuration * _contentSize.width + cwidth, 0, cwidth, cheight};
+}
+
 
 @end

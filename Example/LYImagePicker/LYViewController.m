@@ -65,7 +65,7 @@
 	}
 	
 	{
-		LYVideoRange *rangeview = [LYVideoRange view];
+		LYVideoRange *rangeview = [LYVideoRange control];
 		[self.view addSubview:rangeview];
 		opRange = rangeview;
 		[opRange border1Px];
@@ -76,8 +76,12 @@
 			make.height.mas_equalTo(70);
 		}];
 		
+		
 		opRange.indicatorBegin.ivBg.image = [UIImage imageNamed:@"indicator-bg"];
-		opRange.indicatorEnd.ivBg.image = [UIImage imageNamed:@"indicator-bg"];
+//		opRange.indicatorEnd.ivBg.image = [UIImage imageNamed:@"indicator-bg"];
+		
+		opRange.minDuration = 3;
+		opRange.maxDuration = 16;
 	}
 	
 	{
@@ -154,7 +158,7 @@
 		
 		dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 		
-		[opRange.svCont borderWithWidth:2 andColor:[UIColor whiteColor]];
+//		[opRange.svCont borderWithWidth:2 andColor:[UIColor whiteColor]];
 		opRange.asset = asset;
 		[opRange updateThumbnails];
 		opRange.indicatorBody.bdTop.backgroundColor = [UIColor coreThemeColor];
