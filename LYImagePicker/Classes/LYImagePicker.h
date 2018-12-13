@@ -30,6 +30,7 @@
 #import <LYImagePicker/LYMediaGridPickerViewController.h>
 #import <LYImagePicker/LYMediaGridCell.h>
 #import <LYImagePicker/LYMediaCandidateCell.h>
+#import <LYImagePicker/LYVideoSlider.h>
 #import <LYImagePicker/LYVideoRange.h>
 
 
