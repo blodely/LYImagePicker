@@ -96,6 +96,18 @@
 			make.height.mas_equalTo(100);
 		}];
 	}
+	
+	{
+		LYVideoSlider *view = [[LYVideoSlider alloc] init];
+		[self.view addSubview:view];
+		
+		[view mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(self->ivGif.mas_bottom).offset(padding);
+			make.left.equalTo(self.view).offset(padding);
+			make.right.equalTo(self.view).offset(-padding);
+			make.height.mas_equalTo(70);
+		}];
+	}
 }
 
 - (void)viewDidLoad {
