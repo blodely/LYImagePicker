@@ -25,9 +25,35 @@
 //
 
 #import "LYVideoSlider.h"
+#import "LYImagePicker.h"
+
+
+@interface LYImagePicker () {}
+@end
 
 @implementation LYVideoSlider
 
+// MARK: - ACTION
 
+// MARK: - INIT
+
+- (instancetype)initWithFrame:(CGRect)frame {
+	frame.size.height = 60;
+	if (self = [super initWithFrame:frame]) {
+		[self initial];
+	}
+	return self;
+}
+
+- (void)initial {
+	
+	{
+		[self setThumbImage:[UIImage imageNamed:@"indicator" inBundle:[NSBundle imgpickResBundle] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+		
+		self.backgroundColor = [UIColor clearColor];
+	}
+}
+
+// MARK: - METHOD
 
 @end

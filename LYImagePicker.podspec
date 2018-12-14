@@ -25,9 +25,9 @@ A Custom Image Picker.
 
 	s.source_files = 'LYImagePicker/Classes/LYISelectorGrid/*', 'LYImagePicker/Classes/LYIVideoSlider/*', 'LYImagePicker/Classes/LYIVideoRange/*', 'LYImagePicker/Classes/*'
 
-	# s.resource_bundles = {
-	#   'LYImagePicker' => ['LYImagePicker/Assets/*.png']
-	# }
+	s.resource_bundles = {
+		'LYImagePicker' => ['LYImagePicker/Assets/*.png']
+	}
 
 	# s.public_header_files = 'Pod/Classes/**/*.h'
 	# s.frameworks = 'UIKit', 'MapKit'

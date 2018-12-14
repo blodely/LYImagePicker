@@ -34,6 +34,8 @@
 #import <LYImagePicker/LYVideoRange.h>
 
 
+FOUNDATION_EXPORT NSString *const LIB_IMAGE_PICKER_BUNDLE_ID;
+
 typedef void(^LYMediaPickerDone)(NSArray *results);
 
 @interface LYImagePicker : NSObject
@@ -110,4 +112,8 @@ typedef void(^LYMediaPickerDone)(NSArray *results);
 					  destinationPath:(NSString *)filepath
 							completed:(void (^)(void))completion;
 
+@end
+
+@interface NSBundle (LYImagePicker)
++ (NSBundle *)imgpickResBundle;
 @end

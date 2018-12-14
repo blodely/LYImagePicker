@@ -29,4 +29,6 @@
 
 @interface LYVideoSlider : UISlider
 
+- (void)initial;
+
 @end

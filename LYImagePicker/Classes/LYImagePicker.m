@@ -30,6 +30,8 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 
 
+NSString *const LIB_IMAGE_PICKER_BUNDLE_ID = @"org.cocoapods.LYImagePicker";
+
 @implementation LYImagePicker
 
 // MARK: - INIT
@@ -300,4 +302,10 @@
 	});
 }
 
+@end
+
+@implementation NSBundle (LYImagePicker)
++ (NSBundle *)imgpickResBundle {
+	return [NSBundle bundleWithURL:[[NSBundle bundleForClass:[LYImagePicker class]] URLForResource:@"LYImagePicker" withExtension:@"bundle"]];
+}
 @end
