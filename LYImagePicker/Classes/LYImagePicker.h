@@ -32,6 +32,7 @@
 #import <LYImagePicker/LYMediaCandidateCell.h>
 #import <LYImagePicker/LYVideoSlider.h>
 #import <LYImagePicker/LYVideoRange.h>
+#import <LYImagePicker/UIImage+LYImagePicker.h>
 
 
 FOUNDATION_EXPORT NSString *const LIB_IMAGE_PICKER_BUNDLE_ID;
