@@ -69,6 +69,7 @@ NSString *const LYMediaGridCellIdentifier = @"LYMediaGridCellIdentifier";
 		[cSelIdx roundedCornerRadius:9];
 		cSelIdx.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
 		[cSelIdx borderWithWidth:2 andColor:[UIColor whiteColor]];
+		cSelIdx.userInteractionEnabled = NO;
 	}
 	
 	{
