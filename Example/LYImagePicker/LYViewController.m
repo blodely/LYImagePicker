@@ -11,6 +11,7 @@
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import <Masonry/Masonry.h>
 #import <FLAnimatedImage/FLAnimatedImage.h>
+#import <LYImagePicker/LYICameraViewController.h>
 
 
 @interface LYViewController () {
@@ -19,6 +20,8 @@
 	__weak UIImageView *ivLatestVideo;
 	__weak LYVideoRange *opRange;
 	__weak FLAnimatedImageView *ivGif;
+	__weak LYVideoSlider *slider;
+	__weak UIButton *btnCamera;
 }
 
 @end
@@ -34,6 +37,7 @@
 	CGFloat padding = 15;
 	
 	{
+		// MARK: ┌ BUTTON GRID PICKER
 		UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
 		[button setTitle:@"Grid Picker" forState:UIControlStateNormal];
 		[self.view addSubview:button];
@@ -53,6 +57,7 @@
 	}
 	
 	{
+		// MARK: ├ VIDEO COVER
 		UIImageView *imageview = [[UIImageView alloc] init];
 		[self.view addSubview:imageview];
 		ivLatestVideo = imageview;
@@ -65,6 +70,7 @@
 	}
 	
 	{
+		// MARK: ├ VIDEO RANGE
 		LYVideoRange *rangeview = [LYVideoRange control];
 		[self.view addSubview:rangeview];
 		opRange = rangeview;
@@ -85,6 +91,7 @@
 	}
 	
 	{
+		// MARK: ├ GIF VIEW
 		FLAnimatedImageView *imageview = [[FLAnimatedImageView alloc] init];
 		[self.view addSubview:imageview];
 		ivGif = imageview;
@@ -98,8 +105,10 @@
 	}
 	
 	{
+		// MARK: ├ VIDEO SLIDER
 		LYVideoSlider *view = [[LYVideoSlider alloc] init];
 		[self.view addSubview:view];
+		slider = view;
 		
 		[view mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.equalTo(self->ivGif.mas_bottom).offset(padding);
@@ -107,6 +116,26 @@
 			make.right.equalTo(self.view).offset(-padding);
 			make.height.mas_equalTo(70);
 		}];
+	}
+	
+	{
+		// MARK: └ BUTTON CAMERA ENTER
+		UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+		[self.view addSubview:button];
+		btnCamera = button;
+		
+		[button setTitle:@"Open Camera View" forState:UIControlStateNormal];
+		
+		[button mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(self->slider.mas_bottom).offset(padding);
+			make.left.equalTo(self.view).offset(padding);
+			make.right.equalTo(self.view).offset(-padding);
+			make.height.mas_equalTo(44);
+		}];
+
+		[btnCamera bk_addEventHandler:^(id sender) {
+			[self presentViewController:[LYICameraViewController cameraNav] animated:YES completion:^{}];
+		} forControlEvents:UIControlEventTouchUpInside];
 	}
 }
 

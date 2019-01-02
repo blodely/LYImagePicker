@@ -26,6 +26,8 @@
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>PicPicker need to access your media library.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>PicPicker need to access your camera to take photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>PicPicker need to access your photo library.</string>
 	<key>UILaunchStoryboardName</key>

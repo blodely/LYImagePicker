@@ -31,6 +31,7 @@ PODS:
     - BlocksKit/DynamicDelegate
   - FCFileManager (1.0.20)
   - FLAnimatedImage (1.0.12)
+  - GPUImage (0.1.7)
   - LYCategory (1.2.37)
   - LYCore (1.0.33):
     - AFNetworking (~> 3.2.1)
@@ -38,6 +39,7 @@ PODS:
     - LYCategory
     - Masonry (~> 1.1.0)
   - LYImagePicker (1.0.0):
+    - GPUImage
     - LYCategory
     - LYCore
   - Masonry (1.1.0)
@@ -53,6 +55,7 @@ SPEC REPOS:
     - BlocksKit
     - FCFileManager
     - FLAnimatedImage
+    - GPUImage
     - LYCategory
     - LYCore
     - Masonry
@@ -66,9 +69,10 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   FCFileManager: e0f73316e6aa2eb04d2ff4caa75fe7df1ae44270
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   LYCategory: 0c3b48db41f99ee4fafc7debe374b8d22beaf207
   LYCore: c0eaa8b8e2a40c4905d6b41873428ddc36554824
-  LYImagePicker: c338489dfd4aab09ba94c54ab28ef22a6f44c195
+  LYImagePicker: 87003a5e6832bfd636a0e1fba25c12dd16a935fd
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
 PODFILE CHECKSUM: 2790f195299363157ec6f2e75c8cb21b2866fbfe
