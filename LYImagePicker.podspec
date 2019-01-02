@@ -37,5 +37,6 @@ A Custom Image Picker.
 	
 	s.ios.dependency 'LYCategory'
 	s.ios.dependency 'LYCore'
+	s.ios.dependency 'GPUImage'
 
 end
