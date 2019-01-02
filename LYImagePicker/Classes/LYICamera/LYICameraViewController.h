@@ -31,4 +31,10 @@
 
 + (UINavigationController *)cameraNav;
 
+@property (weak, nonatomic) UIButton *btnBack;
+
+@property (weak, nonatomic) UIButton *btnFlip;
+@property (weak, nonatomic) UIButton *btnFlash;
+@property (weak, nonatomic) UIButton *btnTimer;
+
 @end
