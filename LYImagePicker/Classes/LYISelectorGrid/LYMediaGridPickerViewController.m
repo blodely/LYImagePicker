@@ -210,11 +210,8 @@
 	}
 	
 	[[LYImagePicker kit] fetchVideo:^(NSArray<PHAsset *> *result) {
-		
 		[self->dsVideo removeAllObjects];
 		[self->dsVideo addObjectsFromArray:result];
-//		[self->cvGrid reloadData];
-		
 	}];
 	
 	[[LYImagePicker kit] fetchPicture:^(NSArray<PHAsset *> *result) {
