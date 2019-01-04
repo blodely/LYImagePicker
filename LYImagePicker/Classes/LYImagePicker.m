@@ -72,6 +72,34 @@ NSString *const LIB_IMAGE_PICKER_BUNDLE_ID = @"org.cocoapods.LYImagePicker";
 
 // MARK: -
 
+- (void)fetchMedia:(void (^)(NSArray<PHAsset *> *))action {
+	
+	if ([self authorizationPhotoCheck] == NO) {
+		return;
+	}
+	
+	PHFetchOptions *options = [[PHFetchOptions alloc] init];
+	options.includeHiddenAssets = YES;
+	options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+	
+	NSMutableArray<PHAsset *> *assets = [NSMutableArray arrayWithCapacity:1];
+	PHFetchResult *result = [PHAsset fetchAssetsWithOptions:options];
+	[result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+		if ([obj isKindOfClass:[PHAsset class]]) {
+			[assets addObject:obj];
+		}
+	}];
+	
+	if (action != nil) {
+		action([NSArray arrayWithArray:assets]);
+	} else {
+		NSLog(@"BLOCK NOT FOUND");
+	}
+	
+	[assets removeAllObjects];
+	assets = nil;
+}
+
 - (void)fetchPicture:(void (^)(NSArray<PHAsset *> *))action {
 	
 	if ([self authorizationPhotoCheck] == NO) {

@@ -68,7 +68,12 @@ typedef void(^LYMediaPickerDone)(NSArray *results);
 
 // MARK: - FETCH RESOURCES
 
-//- (void)fetchMedia;
+/**
+ fetch media(including photos and videos)
+
+ @param action complete
+ */
+- (void)fetchMedia:(void (^)(NSArray<PHAsset *> *result))action;
 
 /**
  fetch pictures
