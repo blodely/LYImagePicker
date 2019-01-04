@@ -38,6 +38,18 @@ NSString *const LYMediaGridCellIdentifier = @"LYMediaGridCellIdentifier";
 
 @implementation LYMediaGridCell
 
+// MARK: - ACTION
+
+- (void)mediaSelectionTapped:(id)sender {
+	if ([self.delegate respondsToSelector:@selector(selectMediaInLYMediaGridCell:)]) {
+		[self.delegate selectMediaInLYMediaGridCell:self];
+	} else {
+		NSLog(@"DELEGATE NOT FOUND");
+	}
+}
+
+// MARK: - INIT
+
 - (void)initial {
 	[super initial];
 	
@@ -71,6 +83,7 @@ NSString *const LYMediaGridCellIdentifier = @"LYMediaGridCellIdentifier";
 		cSelIdx.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
 		[cSelIdx borderWithWidth:2 andColor:[UIColor whiteColor]];
 		cSelIdx.userInteractionEnabled = NO;
+		[cSelIdx addTarget:self action:@selector(mediaSelectionTapped:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	
 	{

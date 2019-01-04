@@ -29,10 +29,18 @@
 
 FOUNDATION_EXPORT NSString *const LYMediaGridCellIdentifier;
 
+
+@class LYMediaGridCell;
+@protocol LYMediaGridCellDelegate <NSObject>
+- (void)selectMediaInLYMediaGridCell:(LYMediaGridCell *)cell;
+@end
+
 @interface LYMediaGridCell : LYCollectionCell
 
 @property (weak, nonatomic) UIImageView *ivPic;
 @property (weak, nonatomic) UILabel *lblSelIdx;
 @property (weak, nonatomic) UILabel *lblDuration;
+
+@property (weak, nonatomic) id <LYMediaGridCellDelegate> delegate;
 
 @end
