@@ -46,6 +46,7 @@ NSString *const LYMediaGridCellIdentifier = @"LYMediaGridCellIdentifier";
 	{
 		// MARK: PICTURE
 		UIImageView *imageview = [[UIImageView alloc] init];
+		imageview.clipsToBounds = YES;
 		[self addSubview:imageview];
 		_ivPic = imageview;
 		
