@@ -23,7 +23,7 @@ A Custom Image Picker.
 
 	s.ios.deployment_target = '10.0'
 
-	s.source_files = 'LYImagePicker/Classes/LYISelectorGrid/*', 'LYImagePicker/Classes/LYIVideoSlider/*', 'LYImagePicker/Classes/LYIVideoRange/*', 'LYImagePicker/Classes/LYICamera/*', 'LYImagePicker/Classes/LYIDetect/*', 'LYImagePicker/Classes/*'
+	s.source_files = 'LYImagePicker/Classes/LYISelectorGrid/*', 'LYImagePicker/Classes/LYIVideoSlider/*', 'LYImagePicker/Classes/LYIVideoRange/*', 'LYImagePicker/Classes/LYICamera/*', 'LYImagePicker/Classes/LYIDetect/*', 'LYImagePicker/Classes/toolkit/*', 'LYImagePicker/Classes/*'
 
 	s.resource_bundles = {
 		'LYImagePicker' => ['LYImagePicker/Assets/*.png']

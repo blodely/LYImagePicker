@@ -26,6 +26,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
+#import <LYImagePicker/AVAsset+Meta.h>
 #import <AVFoundation/AVCaptureDevice.h>
 #import <LYImagePicker/LYMediaGridPickerViewController.h>
 #import <LYImagePicker/LYMediaGridCell.h>
