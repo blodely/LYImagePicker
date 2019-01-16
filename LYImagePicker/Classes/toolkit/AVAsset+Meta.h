@@ -25,10 +25,12 @@
 //
 
 #import <AVFoundation/AVFoundation.h>
-
+#import <GPUImage/GPUImageContext.h>
 
 @interface AVAsset (Meta)
 
 - (NSInteger)rotationDegree;
+
+- (GPUImageRotationMode)rotationModeInGPUImage;
 
 @end

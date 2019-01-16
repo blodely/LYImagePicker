@@ -25,6 +25,8 @@
 //
 
 #import "AVAsset+Meta.h"
+#import <GPUImage/GPUImage.h>
+
 
 @implementation AVAsset (Meta)
 
@@ -53,6 +55,30 @@
 	}
 	
 	return degree;
+}
+
+- (GPUImageRotationMode)rotationModeInGPUImage {
+	
+	GPUImageRotationMode mode = kGPUImageNoRotation;
+	
+	switch ([self rotationDegree]) {
+		case 0: {
+			
+		} break;
+		case 90: {
+			mode = kGPUImageRotateRight;
+		} break;
+		case 180: {
+			mode = kGPUImageRotate180;
+		} break;
+		case 270: {
+			mode = kGPUImageRotateLeft;
+		} break;
+		default:
+			break;
+	}
+	
+	return mode;
 }
 
 @end
