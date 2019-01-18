@@ -82,7 +82,7 @@
 }
 
 - (CGSize)metaSize {
-	NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo];
+	NSArray *tracks = [self tracksWithMediaType:AVMediaTypeVideo];
 	if (tracks == nil || [tracks count] <= 0) {
 		return CGSizeZero;
 	}
