@@ -81,4 +81,12 @@
 	return mode;
 }
 
+- (CGSize)metaSize {
+	NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo];
+	if (tracks == nil || [tracks count] <= 0) {
+		return CGSizeZero;
+	}
+	return [tracks[0] naturalSize];
+}
+
 @end

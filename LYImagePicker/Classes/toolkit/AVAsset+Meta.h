@@ -33,4 +33,6 @@
 
 - (GPUImageRotationMode)rotationModeInGPUImage;
 
+- (CGSize)metaSize;
+
 @end
