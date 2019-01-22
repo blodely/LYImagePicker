@@ -35,4 +35,6 @@
 
 - (CGSize)metaSize;
 
+- (CGSize)metaSizeRotationFixed;
+
 @end

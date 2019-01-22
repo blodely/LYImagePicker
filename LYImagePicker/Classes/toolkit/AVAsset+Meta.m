@@ -89,4 +89,18 @@
 	return [tracks[0] naturalSize];
 }
 
+- (CGSize)metaSizeRotationFixed {
+	CGSize size = [self metaSize];
+	
+	NSInteger degree = [self rotationDegree];
+	if (degree == 0 || degree == 180) {
+		return size;
+	}
+	
+	CGFloat sideW = size.height;
+	CGFloat sideH = size.width;
+	
+	return (CGSize){sideW, sideH};
+}
+
 @end
