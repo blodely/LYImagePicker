@@ -38,6 +38,12 @@
 
 FOUNDATION_EXPORT NSString *const LIB_IMAGE_PICKER_BUNDLE_ID;
 
+typedef NS_ENUM(NSUInteger, LYImagePickerAspect) {
+	LYImagePickerAspectSquare = 0,
+	LYImagePickerAspect4w3 = 1,
+	LYImagePickerAspect16w9 = 2,
+};
+
 typedef void(^LYMediaPickerDone)(NSArray *results);
 
 @interface LYImagePicker : NSObject
