@@ -80,7 +80,10 @@ NSString *const LIB_IMAGE_PICKER_BUNDLE_ID = @"org.cocoapods.LYImagePicker";
 	
 	PHFetchOptions *options = [[PHFetchOptions alloc] init];
 	options.includeHiddenAssets = YES;
-	options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+	options.sortDescriptors = @[
+								[NSSortDescriptor sortDescriptorWithKey:@"modificationDate" ascending:NO],
+//								[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO],
+								];
 	
 	NSMutableArray<PHAsset *> *assets = [NSMutableArray arrayWithCapacity:1];
 	PHFetchResult *result = [PHAsset fetchAssetsWithOptions:options];
