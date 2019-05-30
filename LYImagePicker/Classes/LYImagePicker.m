@@ -94,7 +94,7 @@ NSString *const LIB_IMAGE_PICKER_BUNDLE_ID = @"org.cocoapods.LYImagePicker";
 	}];
 	
 	if (action != nil) {
-		action([NSArray arrayWithArray:assets]);
+		action([assets reversed]);
 	} else {
 		NSLog(@"BLOCK NOT FOUND");
 	}
@@ -111,7 +111,7 @@ NSString *const LIB_IMAGE_PICKER_BUNDLE_ID = @"org.cocoapods.LYImagePicker";
 	
 	PHFetchOptions *options = [[PHFetchOptions alloc] init];
 	options.includeHiddenAssets = YES;
-	options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+//	options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
 	
 	NSMutableArray<PHAsset *> *assets = [NSMutableArray arrayWithCapacity:1];
 	
@@ -124,7 +124,7 @@ NSString *const LIB_IMAGE_PICKER_BUNDLE_ID = @"org.cocoapods.LYImagePicker";
 	}];
 	
 	if (action != nil) {
-		action([NSArray arrayWithArray:assets]);
+		action([assets reversed]);
 	} else {
 		NSLog(@"BLOCK NOT FOUND");
 	}
