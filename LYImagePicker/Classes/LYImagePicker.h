@@ -119,6 +119,13 @@ typedef void(^LYMediaPickerDone)(NSArray *results);
  */
 - (void)requestLatestVideoCoverComplete:(void (^)(UIImage *image))complete;
 
+/**
+ REQUEST THE LATEST MEDIA THUMBNAIL.
+
+ @param complete COMPLETION BLOCK
+ */
+- (void)requestLatestMediaComplete:(void (^)(UIImage *image))complete;
+
 // MARK: - GENERATOR
 
 - (void)generateThumbnailsForAsset:(AVAsset *)asset bound:(CGSize)size

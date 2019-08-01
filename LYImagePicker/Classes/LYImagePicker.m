@@ -234,6 +234,31 @@ NSString *const LIB_IMAGE_PICKER_BUNDLE_ID = @"org.cocoapods.LYImagePicker";
 	}];
 }
 
+- (void)requestLatestMediaComplete:(void (^)(UIImage *))complete {
+	PHFetchOptions *options = [[PHFetchOptions alloc] init];
+	options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+	PHFetchResult *media = [PHAsset fetchAssetsWithOptions:options];
+	
+	if ([media count] <= 0) {
+		if (complete != nil) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				complete(nil);
+			});
+		}
+		return;
+	}
+	
+	PHAsset *asset = [media firstObject];
+	
+	[[PHImageManager defaultManager] requestImageForAsset:asset targetSize:(CGSize){80, 80} contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage *result, NSDictionary *info) {
+		if (complete != nil) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				complete(result);
+			});
+		}
+	}];
+}
+
 // MARK: - GENERATOR
 
 - (void)generateThumbnailsForAsset:(AVAsset *)asset bound:(CGSize)size numbers:(NSUInteger)count completed:(void (^)(NSArray<UIImage *> *))completion {
