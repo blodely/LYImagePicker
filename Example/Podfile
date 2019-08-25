@@ -2,6 +2,8 @@ use_frameworks!
 platform :ios, '10.0'
 inhibit_all_warnings!
 
+project './LYImagePicker.xcodeproj'
+
 target 'LYImagePicker_Example' do
 	pod 'LYImagePicker', :path => '../'
 	
