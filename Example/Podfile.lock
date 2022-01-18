@@ -1,18 +1,18 @@
 PODS:
-  - AFNetworking (3.2.1):
-    - AFNetworking/NSURLSession (= 3.2.1)
-    - AFNetworking/Reachability (= 3.2.1)
-    - AFNetworking/Security (= 3.2.1)
-    - AFNetworking/Serialization (= 3.2.1)
-    - AFNetworking/UIKit (= 3.2.1)
-  - AFNetworking/NSURLSession (3.2.1):
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
-  - AFNetworking/UIKit (3.2.1):
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
@@ -30,21 +30,21 @@ PODS:
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
   - FCFileManager (1.0.20)
-  - FLAnimatedImage (1.0.12)
+  - FLAnimatedImage (1.0.16)
   - GPUImage (0.1.7)
-  - LYCategory (1.2.43)
-  - LYCore (1.0.36):
-    - AFNetworking (~> 3.2.1)
+  - JLRoutes (2.1)
+  - LYCategory (1.13.6)
+  - LYCore (1.13.2):
+    - AFNetworking (~> 4.0)
     - FCFileManager (~> 1.0.20)
-    - LYCategory
+    - JLRoutes (~> 2.1)
+    - LYCategory (~> 1.12)
     - Masonry (~> 1.1.0)
-    - WebViewJavascriptBridge (~> 6.0.3)
-  - LYImagePicker (1.0.0):
+  - LYImagePicker (1.13.0):
     - GPUImage
-    - LYCategory
-    - LYCore
+    - LYCategory (~> 1.13)
+    - LYCore (~> 1.13)
   - Masonry (1.1.0)
-  - WebViewJavascriptBridge (6.0.3)
 
 DEPENDENCIES:
   - BlocksKit
@@ -52,33 +52,33 @@ DEPENDENCIES:
   - LYImagePicker (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - AFNetworking
     - BlocksKit
     - FCFileManager
     - FLAnimatedImage
     - GPUImage
+    - JLRoutes
     - LYCategory
     - LYCore
     - Masonry
-    - WebViewJavascriptBridge
 
 EXTERNAL SOURCES:
   LYImagePicker:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   FCFileManager: e0f73316e6aa2eb04d2ff4caa75fe7df1ae44270
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FLAnimatedImage: 8f3e854ebf9680b71f0b6e700939687fc4d82b4b
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
-  LYCategory: 422fa6db757147b89014aa30dc5d9203709ce745
-  LYCore: 1c34790c56439954a696c6260063e18703045918
-  LYImagePicker: d1a1facd9b3209ff9ca4a9530de574b5c5037f1c
+  JLRoutes: d755245322b94227662ea3e43492fdca94e05c5b
+  LYCategory: 7c1726540f50e8f66d8cafe1e525d1c02d48449c
+  LYCore: 58f57ba1a10ed78b6f7d4f715aa9f1b890608860
+  LYImagePicker: ae3a91d6587a22db4bf79dfdf2f546c8f4a9b59b
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
 
-PODFILE CHECKSUM: 3318a541b3dbb011ddb559797ced93125e2e6c8e
+PODFILE CHECKSUM: 401bd9d5dd49f38496871e508b17b467b5354d98
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.11.2
