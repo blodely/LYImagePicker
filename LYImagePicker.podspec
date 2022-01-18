@@ -6,11 +6,13 @@
 
 Pod::Spec.new do |s|
 	s.name             = 'LYImagePicker'
-	s.version          = '1.0.0'
+	s.version          = '1.13.0'
 	s.summary          = 'LYImagePicker.'
 
 	s.description      = <<-DESC
 A Custom Image Picker.
+1.0.0: iOS10+.
+1.13.0: iOS11+.
 					   DESC
 
 	s.homepage         = 'https://github.com/blodely/LYImagePicker'
@@ -21,7 +23,7 @@ A Custom Image Picker.
 
 	s.social_media_url = 'https://weibo.com/blodely'
 
-	s.ios.deployment_target = '10.0'
+	s.ios.deployment_target = '11.0'
 
 	s.source_files = 'LYImagePicker/Classes/LYISelectorGrid/*', 'LYImagePicker/Classes/LYIVideoSlider/*', 'LYImagePicker/Classes/LYIVideoRange/*', 'LYImagePicker/Classes/LYICamera/*', 'LYImagePicker/Classes/LYIDetect/*', 'LYImagePicker/Classes/toolkit/*', 'LYImagePicker/Classes/*'
 
@@ -35,8 +37,8 @@ A Custom Image Picker.
 
 	s.ios.frameworks = 'UIKit', 'Photos', 'AVFoundation', 'ImageIO', 'MobileCoreServices'
 	
-	s.ios.dependency 'LYCategory'
-	s.ios.dependency 'LYCore'
+	s.ios.dependency 'LYCategory', '~> 1.13'
+	s.ios.dependency 'LYCore', '~> 1.13'
 	s.ios.dependency 'GPUImage'
 
 end
